@@ -15,18 +15,18 @@
 
 
         <?php
-        while ($donnees = $req->fetch())
+        while ($data = $req->fetch())
         {
         ?>
         <div class="news">
             <h3>
-                <?php echo htmlspecialchars($donnees['title']); ?>
-                <em>le <?php echo $donnees['date_creation_fr']; ?></em>
+                <?php echo htmlspecialchars($data['title']); ?>
+                <em>le <?php echo $data['date_creation_fr']; ?></em>
             </h3>
 
             <p>
             <?php
-            echo nl2br(htmlspecialchars($donnees['content']));
+            echo nl2br(htmlspecialchars($data['content']));
             ?>
             <br />
             <em><a href="#">Commentaires</a></em>
