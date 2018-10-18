@@ -1,7 +1,6 @@
 <?php
 require('modele.php');
 
-$req = getBillet();
+$req = getPosts();
 
 require('affichageAcceuil.php');
-?>
