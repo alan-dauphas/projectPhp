@@ -20,8 +20,8 @@
         ?>
         <div class="news">
             <h3>
-                <?php echo htmlspecialchars($data['title']); ?>
-                <em>le <?php echo $data['date_creation_fr']; ?></em>
+                <?= htmlspecialchars($data['title']); ?>
+                <em>le <?= $data['date_creation_fr']; ?></em>
             </h3>
 
             <p>
