@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +11,7 @@
     </head>
 
     <body>
+      <p>Template bien intégré</p>
         <?= $content ?>
     </body>
 </html>

@@ -17,6 +17,7 @@ function getPost($postId)
     return $post;
 }
 
+
 function getComments($postId)
 {
     $db = dbConnect();
@@ -26,24 +27,28 @@ function getComments($postId)
     return $comments;
 }
 
+
 function postComment($postId, $author, $comment)
 {
     $db = dbConnect();
-    $comments = $db->prepare('INSERT INTO comments (post_id, author, comment, comment_date) VALUES (?, ?, ?, NOW())');
-    $newComments = $comments->execute(array($postId, $author, $comment));
+    $addcomments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
+    $newComments = $addcomments->execute(array($postId, $author, $comment));
 
     return $newComments;
 }
 
+
 function newRegistration($name, $pseudo, $pass, $mail)
 {
   $db = dbConnect();
-  $members = $db->prepare('INSERT INTO members (name, pseudo, pass, mail, registration_date) VALUES (?, ?, ?, ?, NOW())');
-  $newMembers = $members->execute(array($name, $pseudo, $pass, $mail));
+  $passhash = password_hash($pass, PASSWORD_DEFAULT);
+  $members = $db->prepare('INSERT INTO members(name, pseudo, pass, mail, registration_date) VALUES(?, ?, ?, ?, NOW())');
+  $newMembers = $members->execute(array($name, $pseudo, $passhash, $mail));
+
 
   return $newMembers;
-
 }
+
 
 function dbConnect()
 {

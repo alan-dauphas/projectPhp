@@ -6,7 +6,7 @@ ob_start(); ?>
 <h1>Inscription <br /> Sur <br /> Mon Super Blog</h1>
 
 
-<form action="index.html?action=registration&amp;confirmation=confirm" method="POST">
+<form action="index.php?action=registration&amp;confirmation=confirm" method="post">
 
   <div>
     <label for="name">Nom :</label>
@@ -25,13 +25,18 @@ ob_start(); ?>
 
   <div>
     <label for="pass">Mot de passe :</label>
-    <input type="password" name="pass" id="pass" >
+    <input type="password" name="pass" id="pass" required="required">
   </div>
 
-  <input type="submit" name="" value="Confirmation">
+  <div>
+    <label for="pass_confirm">Mot de passe :</label>
+    <input type="password" name="pass_confirm" id="pass_confirm" required="required">
+  </div>
+
+  <input type="submit" value="Confirmation">
 
 </form>
 
 
 <?php $content = ob_get_clean(); ?>
-<?php require('/view/frontend/template.php'); ?>
+<?php require('view/frontend/template.php'); ?>

@@ -17,26 +17,27 @@
 
 <h2>Commentaires</h2>
 
-<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="POST">
+<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
     <div>
         <label for="author">Auteur</label><br />
-        <input type="text" id="author" name="author" />
+        <input type="varchar" id="author" name="author" max="255" min="8"/>
     </div>
     <div>
         <label for="comment">Commentaire</label><br />
-        <textarea id="comment" name="comment"></textarea>
+        <textarea type="text" id="comment" name="comment"></textarea>
     </div>
     <div>
         <input type="submit" value="Confirmer" />
     </div>
 </form>
 
+
 <?php
 while ($comment = $comments->fetch())
 {
 ?>
-    <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-    <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+    <p><strong><?= htmlspecialchars(ucfirst($comment['author'])) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
+    <p><?= nl2br(strip_tags($comment['comment'])) ?></p>
 <?php
 }
 ?>

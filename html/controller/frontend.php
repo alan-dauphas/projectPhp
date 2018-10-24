@@ -27,7 +27,8 @@ function addComment($postId, $author, $comment)
   }
   else
   {
-    header('Location : index.php?action=post&id=' . $postId);
+    header('Location: index.php?action=post&id=' . $postId);
+    exit();
   }
 }
 
@@ -46,6 +47,10 @@ function addMembers($name, $pseudo, $pass, $mail)
   }
   else
   {
-    header('Location : index.php');
+
+
+    header('Location: index.php');
+
+    exit();
   }
 }

@@ -1,4 +1,4 @@
-h1, h3
+h1, h2, h3
 {
     text-align:center;
 }
@@ -9,6 +9,7 @@ h3
     font-size:0.9em;
     margin-bottom:0px;
 }
+
 .news p
 {
     background-color:#CCCCCC;
