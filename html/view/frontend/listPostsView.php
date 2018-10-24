@@ -1,6 +1,10 @@
 <?php $title = 'Mon blog'; ?>
 
 <?php ob_start(); ?>
+<nav>
+ <a href="index.php?action=registration">Inscription</a>
+</nav>
+
 <h1>Mon super blog !</h1>
 <p>Derniers billets du blog :</p>
 
@@ -27,4 +31,4 @@ $posts->closeCursor();
 ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('/view/frontend/template.php'); ?>
