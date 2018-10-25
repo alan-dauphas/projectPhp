@@ -37,7 +37,7 @@ while ($comment = $comments->fetch())
 {
 ?>
     <p><strong><?= htmlspecialchars(ucfirst($comment['author'])) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-    <p><?= nl2br(strip_tags($comment['comment'])) ?></p>
+    <p><?= nl2br(ucfirst(strip_tags($comment['comment']))) ?></p>
 <?php
 }
 ?>

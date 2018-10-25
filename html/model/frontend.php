@@ -45,13 +45,5 @@ function newRegistration($name, $pseudo, $pass, $mail)
   $members = $db->prepare('INSERT INTO members(name, pseudo, pass, mail, registration_date) VALUES(?, ?, ?, ?, NOW())');
   $newMembers = $members->execute(array($name, $pseudo, $passhash, $mail));
 
-
   return $newMembers;
-}
-
-
-function dbConnect()
-{
-    $db = new PDO('mysql:host=localhost;dbname=projectphp;charset=utf8', 'root', '');
-    return $db;
 }

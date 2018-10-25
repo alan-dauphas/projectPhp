@@ -1,5 +1,4 @@
-<?php $title = "Inscription" ?>
-<?php
+<?php $title = "Inscription" ;
 
 ob_start(); ?>
 

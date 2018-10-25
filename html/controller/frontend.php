@@ -1,18 +1,24 @@
 <?php
 
-require('/model/frontend.php');
+require_once('model/PostManager.php');
+require_once('model/CommentManager.php');
+require_once('model/RegistrationManager.php');
 
 function listPosts()
 {
-    $posts = getPosts();
+    $postManager = new PostManager();
+    $posts = $postManager->getPosts();
 
     require('/view/frontend/listPostsView.php');
 }
 
 function post()
 {
-    $post = getPost($_GET['id']);
-    $comments = getComments($_GET['id']);
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+
+    $post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager->getComments($_GET['id']);
 
     require('/view/frontend/postView.php');
 }
@@ -20,7 +26,10 @@ function post()
 
 function addComment($postId, $author, $comment)
 {
-  $newComments = postComment($postId, $author, $comment);
+
+  $commentManager = new CommentManager();
+
+  $newComments = $commentManager->postComment($postId, $author, $comment);
 
   if ($newComments === false) {
     throw new Exception('Impossible d\'ajouter le commentaire !');
@@ -34,16 +43,19 @@ function addComment($postId, $author, $comment)
 
 function signIn()
 {
-  require('/view/frontend/registration.php');
+  require('/view/frontend/registrationView.php');
 }
 
 function addMembers($name, $pseudo, $pass, $mail)
 {
-  $newMembers = newRegistration($name, $pseudo, $pass, $mail);
+
+  $newMembersManager = new RegistrationManager();
+
+  $newMembers = $newMembersManager->newRegistration($name, $pseudo, $pass, $mail);
 
   if ($newMembers === false)
   {
-    throw new Exception('impossible d\'ajouter un novueau membre !');
+    throw new Exception('impossible d\'ajouter un nouveau membre !');
   }
   else
   {

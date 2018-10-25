@@ -45,7 +45,7 @@ try
       {
         if ($_GET['action'] == 'registration' && isset($_GET['confirmation']) && $_GET['confirmation'] == 'confirm')
         {
-          if (!empty($_POST['name']) && !empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'] && !empty($_POST['pass_confirm']))
+          if (!empty($_POST['name']) && !empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'] && !empty($_POST['pass_confirm'])))
           {
             addMembers($_POST['name'], $_POST['pseudo'], $_POST['mail'], $_POST['pass']);
           }
@@ -68,7 +68,8 @@ try
 }
 catch(Exception $e)
 {
-  echo 'Erreur : ' . $e->getMessage();
+  $errorMessage = $e->getMessage();
+  require("view/frontend/errorView.php");
 }
 
 
