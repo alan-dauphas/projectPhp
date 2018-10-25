@@ -23,7 +23,7 @@ function addComment($postId, $author, $comment)
   $newComments = postComment($postId, $author, $comment);
 
   if ($newComments === false) {
-    die ('impossible d\'ajouter le commentaire !');
+    throw new Exception('Impossible d\'ajouter le commentaire !');
   }
   else
   {
@@ -43,14 +43,11 @@ function addMembers($name, $pseudo, $pass, $mail)
 
   if ($newMembers === false)
   {
-    die ('impossible de vous enregistré !');
+    throw new Exception('impossible d\'ajouter un novueau membre !');
   }
   else
   {
-
-
     header('Location: index.php');
-
     exit();
   }
 }

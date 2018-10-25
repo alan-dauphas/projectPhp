@@ -52,13 +52,6 @@ function newRegistration($name, $pseudo, $pass, $mail)
 
 function dbConnect()
 {
-    try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=projectphp;charset=utf8', 'root', '');
-        return $db;
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
+    $db = new PDO('mysql:host=localhost;dbname=projectphp;charset=utf8', 'root', '');
+    return $db;
 }

@@ -1,67 +1,74 @@
 <?php
 require('controller/frontend.php');
 
-if (isset($_GET['action']))
+try
 {
-    if ($_GET['action'] == 'listPosts')
-    {
-        listPosts();
-    }
-
-    elseif ($_GET['action'] == 'post')
-    {
-        if (isset($_GET['id']) && $_GET['id'] > 0)
-        {
-            post();
-        }
-        else
-        {
-            echo 'Erreur : aucun identifiant de billet envoyé';
-        }
-    }
-
-    elseif ($_GET['action'] == 'addComment')
-    {
-        if (isset($_GET['id']) && $_GET['id'] > 0)
-        {
-            if (!empty($_POST['author']) && !empty($_POST['comment']))
-            {
-                addComment($_GET['id'], $_POST['author'], $_POST['comment']);
-            }
-            else
-            {
-                echo 'Erreur : tous les champs ne sont pas remplis !';
-            }
-        }
-        else
-        {
-            echo 'Erreur : aucun identifiant de billet envoyé';
-        }
-    }
-
-    elseif($_GET['action'] == 'registration')
-    {
-      if ($_GET['action'] == 'registration' && isset($_GET['confirmation']) && $_GET['confirmation'] == 'confirm')
+  if (isset($_GET['action']))
+  {
+      if ($_GET['action'] == 'listPosts')
       {
-        if (!empty($_POST['name']) && !empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'] && !empty($_POST['pass_confirm']))
+          listPosts();
+      }
+
+      elseif ($_GET['action'] == 'post')
+      {
+          if (isset($_GET['id']) && $_GET['id'] > 0)
+          {
+              post();
+          }
+          else
+          {
+            throw new Exception("Erreur : Aucun identifiant de billet envoyé");
+          }
+      }
+
+      elseif ($_GET['action'] == 'addComment')
+      {
+          if (isset($_GET['id']) && $_GET['id'] > 0)
+          {
+              if (!empty($_POST['author']) && !empty($_POST['comment']))
+              {
+                  addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+              }
+              else
+              {
+                throw new Exception("Erreur : tous les champs ne sont pas remplis !");
+              }
+          }
+          else
+          {
+            throw new Exception("Erreur : aucun identifiant de billet envoyé");
+          }
+      }
+
+      elseif($_GET['action'] == 'registration')
+      {
+        if ($_GET['action'] == 'registration' && isset($_GET['confirmation']) && $_GET['confirmation'] == 'confirm')
         {
-          addMembers($_POST['name'], $_POST['pseudo'], $_POST['mail'], $_POST['pass']);
+          if (!empty($_POST['name']) && !empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'] && !empty($_POST['pass_confirm']))
+          {
+            addMembers($_POST['name'], $_POST['pseudo'], $_POST['mail'], $_POST['pass']);
+          }
+          else
+          {
+            throw new Exception("Erreur : tous les champs ne sont pas remplis !");
+          }
         }
         else
         {
-          echo 'Erreur : tous les champs ne sont pas remplis !';
+          signIn();
         }
       }
-      else
-      {
-        signIn();
-      }
-    }
 
+  }
+  else
+  {
+      listPosts();
+  }
 }
-else
+catch(Exception $e)
 {
-    listPosts();
+  echo 'Erreur : ' . $e->getMessage();
 }
 
 
