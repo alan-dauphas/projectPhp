@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Acceuil - Mon blog'; ?>
 
 <?php ob_start(); ?>
 <nav>

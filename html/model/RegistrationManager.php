@@ -1,6 +1,7 @@
 <?php
+require_once("model/Manager.php");
 
-class RegistrationManager
+class RegistrationManager extends Manager
 {
   public function newRegistration($name, $pseudo, $pass, $mail)
   {
@@ -10,11 +11,5 @@ class RegistrationManager
     $newMembers = $members->execute(array($name, $pseudo, $passhash, $mail));
 
     return $newMembers;
-  }
-
-  private function dbConnect()
-  {
-        $db = new PDO('mysql:host=localhost;dbname=projectphp;charset=utf8', 'root', '');
-        return $db;
   }
 }

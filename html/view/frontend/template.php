@@ -11,7 +11,7 @@ session_start();
     </head>
 
     <body>
-      <p>Template bien intégré</p>
+      <p>Template Ok</p>
         <?= $content ?>
     </body>
 </html>

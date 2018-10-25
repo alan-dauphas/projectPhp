@@ -1,7 +1,7 @@
-
 <?php
+require_once("Manager.php");
 
-class CommentManager
+class CommentManager extends Manager
 {
   public function getComments($postId)
   {
@@ -20,11 +20,5 @@ class CommentManager
       $newComments = $addcomments->execute(array($postId, $author, $comment));
 
       return $newComments;
-  }
-
-  private function dbConnect()
-  {
-        $db = new PDO('mysql:host=localhost;dbname=projectphp;charset=utf8', 'root', '');
-        return $db;
   }
 }

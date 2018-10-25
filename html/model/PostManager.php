@@ -1,8 +1,8 @@
 <?php
+require_once("Manager.php");
 
-class PostManager
+class PostManager extends Manager
 {
-
   public function getPosts()
   {
     $db = $this->dbConnect();
@@ -19,11 +19,5 @@ class PostManager
     $post = $req->fetch();
 
     return $post;
-  }
-
-  private function dbConnect()
-  {
-      $db = new PDO('mysql:host=localhost;dbname=projectphp;charset=utf8', 'root', '');
-      return $db;
   }
 }

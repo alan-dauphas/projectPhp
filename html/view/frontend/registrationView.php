@@ -2,7 +2,9 @@
 
 ob_start(); ?>
 
+<p><a href="index.php">Retour à la liste des billets</a></p>
 <h1>Inscription <br /> Sur <br /> Mon Super Blog</h1>
+
 
 
 <form action="index.php?action=registration&amp;confirmation=confirm" method="post">
@@ -19,7 +21,7 @@ ob_start(); ?>
 
   <div>
     <label for="mail">Mail :</label>
-    <input type="mail" name="mail" id="mail" required="required">
+    <input type="email" name="mail" id="mail" required="required">
   </div>
 
   <div>
