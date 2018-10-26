@@ -41,7 +41,7 @@ function addComment($postId, $author, $comment)
   }
 }
 
-function signIn()
+function registration()
 {
   require('/view/frontend/registrationView.php');
 }
@@ -62,4 +62,9 @@ function addMembers($name, $pseudo, $pass, $mail)
     header('Location: index.php');
     exit();
   }
+}
+
+function login()
+{
+  require('/view/frontend/connectionView.php');
 }

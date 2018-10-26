@@ -9,6 +9,9 @@ try
       {
           listPosts();
       }
+      elseif ( $_GET['action'] == 'connection') {
+        login();
+      }
 
       elseif ($_GET['action'] == 'post')
       {
@@ -54,19 +57,19 @@ try
             }
             if(!filter_var($mail, FILTER_VALIDATE_EMAIL))
             {
-              throw new Exception("Mail invalide");
+              throw new Exception("Erreur : Mail invalide");
             }
 
-            if (mb_strlen($pass) < 6 && mb_strlen($pass) > 12)
+            if (mb_strlen($pass) < 6 || mb_strlen($pass) > 12)
             {
-              throw new Exception("Votre mot de passe doit comporter entre 6 et 12 caractères");
+              throw new Exception("Erreur : Votre mot de passe doit comporter entre 6 et 12 caractères");
             }
 
             if ($pass != $pass_confirm)
             {
-              throw new Exception("Les mots de passe sont différents !");
+              throw new Exception("Erreur : Les mots de passe sont différents !");
             }
-            
+
             else
             {
               addMembers($_POST['name'], $_POST['pseudo'], $_POST['mail'], $_POST['pass']);
@@ -80,7 +83,7 @@ try
         }
         else
         {
-          signIn();
+          registration();
         }
       }
 

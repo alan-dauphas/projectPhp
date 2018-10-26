@@ -30,7 +30,7 @@ ob_start(); ?>
   </div>
 
   <div>
-    <label for="pass_confirm">Mot de passe :</label>
+    <label for="pass_confirm">Confirmer mot de passe :</label>
     <input type="password" name="pass_confirm" id="pass_confirm" required="required">
   </div>
 

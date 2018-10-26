@@ -3,9 +3,11 @@ $title = "Page Erreur";
 
 ob_start();
 ?>
+<div style="text-align:center">
+  <img src="public/picture/error.jpg" alt="image d'erreur">
+</div>
 
-<h1>L'erreur est :</h1>
-<p><?= $errorMessage ?></p>
+<h2 align="center"><?= $errorMessage ?></h2>
 
 <?php
 $content = ob_get_clean();
