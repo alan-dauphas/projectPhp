@@ -47,7 +47,31 @@ try
         {
           if (!empty($_POST['name']) && !empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'] && !empty($_POST['pass_confirm'])))
           {
-            addMembers($_POST['name'], $_POST['pseudo'], $_POST['mail'], $_POST['pass']);
+
+            extract($_POST); //permet de ne pas remettre "$_POST" a chaque fois devant les différentes variables
+            if(mb_strlen($pseudo) < 2){
+              throw new Exception("Erreur : Pseudo doit comporter au minimum 3 caracteres !");
+            }
+            if(!filter_var($mail, FILTER_VALIDATE_EMAIL))
+            {
+              throw new Exception("Mail invalide");
+            }
+
+            if (mb_strlen($pass) < 6 && mb_strlen($pass) > 12)
+            {
+              throw new Exception("Votre mot de passe doit comporter entre 6 et 12 caractères");
+            }
+
+            if ($pass != $pass_confirm)
+            {
+              throw new Exception("Les mots de passe sont différents !");
+            }
+            
+            else
+            {
+              addMembers($_POST['name'], $_POST['pseudo'], $_POST['mail'], $_POST['pass']);
+            }
+
           }
           else
           {

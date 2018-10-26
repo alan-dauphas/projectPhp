@@ -1,5 +1,5 @@
 <?php
-$title = "Page Erreur"
+$title = "Page Erreur";
 
 ob_start();
 ?>
