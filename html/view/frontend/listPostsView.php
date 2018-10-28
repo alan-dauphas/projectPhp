@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 <nav>
  <a href="index.php?action=registration">Inscription</a>
- <a href="index.php?action=connection">Connection</a>
+ <a href="index.php?action=listPosts&amp;connection=connection">Connection</a>
 </nav>
 
 <h1>Mon super blog !</h1>
