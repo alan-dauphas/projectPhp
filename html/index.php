@@ -1,102 +1,84 @@
 <?php
 require('controller/frontend.php');
 
+
 try
 {
-  if (isset($_GET['action']))
+  if (empty($_SERVER['QUERY_STRING']))
   {
-      if ($_GET['action'] == 'listPosts')
-      {
-        listPosts();
-        if(isset($_GET["connection"]))
+    listPosts();
+  }
+  elseif ($_GET['action'] == "deconnection") {
+    disconnectMember();
+  }
+  elseif ($_GET['action'] == 'post')
+    {
+        if (isset($_GET['id']) && $_GET['id'] > 0)
         {
-          if ($_GET['connection'] == 'connection')
-          {
-            login();
-          }
+            post();
         }
-      }
-
-      elseif ($_GET['action'] == 'post')
-      {
-          if (isset($_GET['id']) && $_GET['id'] > 0)
-          {
-              post();
-          }
-          else
-          {
-            throw new Exception("Erreur : Aucun identifiant de billet envoyé");
-          }
-      }
-
-      elseif ($_GET['action'] == 'addComment')
-      {
-          if (isset($_GET['id']) && $_GET['id'] > 0)
-          {
-              if (!empty($_POST['author']) && !empty($_POST['comment']))
-              {
-                  addComment($_GET['id'], $_POST['author'], $_POST['comment']);
-              }
-              else
-              {
-                throw new Exception("Erreur : tous les champs ne sont pas remplis !");
-              }
-          }
-          else
-          {
-            throw new Exception("Erreur : aucun identifiant de billet envoyé");
-          }
-      }
-
-      elseif($_GET['action'] == 'registration')
-      {
-        if ($_GET['action'] == 'registration' && isset($_GET['confirmation']) && $_GET['confirmation'] == 'confirm')
+        else
         {
-          if (!empty($_POST['name']) && !empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'] && !empty($_POST['pass_confirm'])))
-          {
-
-            extract($_POST); //permet de ne pas remettre "$_POST" a chaque fois devant les différentes variables
-            if(mb_strlen($pseudo) < 2){
-              throw new Exception("Erreur : Pseudo doit comporter au minimum 3 caracteres !");
-            }
-            if(!filter_var($mail, FILTER_VALIDATE_EMAIL))
+          throw new Exception("Erreur : Aucun identifiant de billet envoyé");
+        }
+    }
+    elseif ($_GET['action'] == 'addComment')
+    {
+        if (isset($_GET['id']) && $_GET['id'] > 0)
+        {
+            if (!empty($_POST['author']) && !empty($_POST['comment']))
             {
-              throw new Exception("Erreur : Mail invalide");
+                addComment($_GET['id'], $_POST['author'], $_POST['comment']);
             }
-
-            if (mb_strlen($pass) < 6 || mb_strlen($pass) > 12)
-            {
-              throw new Exception("Erreur : Votre mot de passe doit comporter entre 6 et 12 caractères");
-            }
-
-            if ($pass != $pass_confirm)
-            {
-              throw new Exception("Erreur : Les mots de passe sont différents !");
-            }
-
             else
             {
-              addMembers($_POST['name'], $_POST['pseudo'], $_POST['mail'], $_POST['pass']);
+              throw new Exception("Erreur : tous les champs ne sont pas remplis !");
             }
-
+        }
+        else
+        {
+          throw new Exception("Erreur : aucun identifiant de billet envoyé");
+        }
+    }
+    elseif($_GET['action'] == 'registration')
+    {
+      if ($_GET['action'] == 'registration' && isset($_GET['confirmation']) && $_GET['confirmation'] == 'confirm')
+      {
+        if (!empty($_POST['name']) && !empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['pass'] && !empty($_POST['pass_confirm'])))
+        {
+          extract($_POST); //permet de ne pas remettre "$_POST" a chaque fois devant les différentes variables
+          if(mb_strlen($pseudo) < 2){
+            throw new Exception("Erreur : Pseudo doit comporter au minimum 3 caracteres !");
+          }
+          if(!filter_var($mail, FILTER_VALIDATE_EMAIL))
+          {
+            throw new Exception("Erreur : Mail invalide");
+          }
+          if (mb_strlen($pass) < 6 || mb_strlen($pass) > 12)
+          {
+            throw new Exception("Erreur : Votre mot de passe doit comporter entre 6 et 12 caractères");
+          }
+          if ($pass != $pass_confirm)
+          {
+            throw new Exception("Erreur : Les mots de passe sont différents !");
           }
           else
           {
-            throw new Exception("Erreur : tous les champs ne sont pas remplis !");
+            addMembers($_POST['name'], $_POST['pseudo'], $_POST['mail'], $_POST['pass']);
           }
         }
         else
         {
-          registration();
+          throw new Exception("Erreur : tous les champs ne sont pas remplis !");
         }
       }
-
-  }
-  else
-  {
-      listPosts();
-  }
+      else
+      {
+        registration();
+      }
+    }
 }
+
 catch(Exception $e)
 {
   $errorMessage = $e->getMessage();

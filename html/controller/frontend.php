@@ -2,7 +2,19 @@
 
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
-require_once('model/RegistrationManager.php');
+require_once('model/MemberManager.php');
+
+/**
+ *
+ */
+// class PostController
+// {
+//
+//   function __construct(argument)
+//   {
+//     // code...*
+//   }
+// }
 
 function listPosts()
 {
@@ -41,6 +53,20 @@ function addComment($postId, $author, $comment)
   }
 }
 
+function connectionMember(){
+
+
+
+
+}
+
+function disconnectMember(){
+  session_start();
+  session_destroy();
+  header("Location: index.php");
+  exit();
+}
+
 function registration()
 {
   require('/view/frontend/registrationView.php');
@@ -49,7 +75,7 @@ function registration()
 function addMembers($name, $pseudo, $pass, $mail)
 {
 
-  $newMembersManager = new RegistrationManager();
+  $newMembersManager = new MemberManager();
 
   $newMembers = $newMembersManager->newRegistration($name, $pseudo, $pass, $mail);
 
@@ -62,9 +88,4 @@ function addMembers($name, $pseudo, $pass, $mail)
     header('Location: index.php');
     exit();
   }
-}
-
-function login()
-{
-  require('/view/frontend/connectionView.php');
 }

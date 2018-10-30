@@ -1,7 +1,7 @@
 <?php
 require_once("model/Manager.php");
 
-class RegistrationManager extends Manager
+class MemberManager extends Manager
 {
   public function newRegistration($name, $pseudo, $pass, $mail)
   {
@@ -11,5 +11,14 @@ class RegistrationManager extends Manager
     $newMembers = $members->execute(array($name, $pseudo, $passhash, $mail));
 
     return $newMembers;
+  }
+
+  public function connectionAdministation()
+  {
+
+    $db = $this->dbConnect();
+    $connection = $db->prepare('SELECT id, pass FROM members WHERE pseudo = ?');
+    $connection->execute(array());
+
   }
 }

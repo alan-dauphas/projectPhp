@@ -1,9 +1,24 @@
-<?php $title = 'Acceuil - Mon blog'; ?>
+<?php
 
-<?php ob_start(); ?>
+$title = 'Acceuil - Mon blog'; ?>
+
+<?php ob_start();  ?>
 <nav>
  <a href="index.php?action=registration">Inscription</a>
- <a href="index.php?action=listPosts&amp;connection=connection">Connection</a>
+
+<?php
+if (isset($_SESSION) == true) {?>
+  <a href="index.php?action=deconnection">Deconnection</a>
+<?php }
+ ?>
+<form action="index.html" method="post">
+  <label>Pseudonyme</label> :<br /><input type="text" name="pseudo" size="15" />
+  <br />
+  <label>Mot de passe</label> :<br /><input type="password" name="pass" size="15" />
+  </br>
+  <input id="validateButton" type="submit" />
+</form>
+
 </nav>
 
 <h1>Mon super blog !</h1>
