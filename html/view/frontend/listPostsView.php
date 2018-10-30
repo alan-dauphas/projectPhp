@@ -11,10 +11,10 @@ if (isset($_SESSION) == true) {?>
   <a href="index.php?action=deconnection">Deconnection</a>
 <?php }
  ?>
-<form action="index.html" method="post">
-  <label>Pseudonyme</label> :<br /><input type="text" name="pseudo" size="15" />
+<form action="index.php?action=connection" method="post">
+  <label>Pseudonyme</label> :<br /><input type="text" name="pseudonyme" size="15" />
   <br />
-  <label>Mot de passe</label> :<br /><input type="password" name="pass" size="15" />
+  <label>Mot de passe</label> :<br /><input type="password" name="passConnection" size="15" />
   </br>
   <input id="validateButton" type="submit" />
 </form>

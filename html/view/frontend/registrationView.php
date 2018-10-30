@@ -19,8 +19,8 @@ ob_start(); ?>
   </div>
 
   <div>
-    <label for="mail">Mail :</label>
-    <input type="email" name="mail" id="mail" required="required">
+    <label for="email">Mail :</label>
+    <input type="email" name="email" id="email" required="required">
   </div>
 
   <div>

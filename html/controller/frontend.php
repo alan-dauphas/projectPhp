@@ -16,16 +16,14 @@ require_once('model/MemberManager.php');
 //   }
 // }
 
-function listPosts()
-{
+function listPosts(){
     $postManager = new PostManager();
     $posts = $postManager->getPosts();
 
     require('/view/frontend/listPostsView.php');
 }
 
-function post()
-{
+function post(){
     $postManager = new PostManager();
     $commentManager = new CommentManager();
 
@@ -35,9 +33,7 @@ function post()
     require('/view/frontend/postView.php');
 }
 
-
-function addComment($postId, $author, $comment)
-{
+function addComment($postId, $author, $comment){
 
   $commentManager = new CommentManager();
 
@@ -53,11 +49,19 @@ function addComment($postId, $author, $comment)
   }
 }
 
-function connectionMember(){
+function connectionMember($pseudonyme){
 
+  $newConnectionMember = new MemberManager();
 
+  $connectionMember = $newConnectionMember->connectionAdministation($pseudonyme);
 
-
+  if ($connectionMember === false){
+    throw new Exception('impossible de ce connecter!');
+  }
+  else{
+    header('Location: index.php');
+    exit();
+  }
 }
 
 function disconnectMember(){
@@ -67,24 +71,20 @@ function disconnectMember(){
   exit();
 }
 
-function registration()
-{
+function registration(){
   require('/view/frontend/registrationView.php');
 }
 
-function addMembers($name, $pseudo, $pass, $mail)
-{
+function addMembers($name, $pseudo, $pass, $email){
 
   $newMembersManager = new MemberManager();
 
-  $newMembers = $newMembersManager->newRegistration($name, $pseudo, $pass, $mail);
+  $newMembers = $newMembersManager->newRegistration($name, $pseudo, $pass, $email);
 
-  if ($newMembers === false)
-  {
+  if ($newMembers === false){
     throw new Exception('impossible d\'ajouter un nouveau membre !');
   }
-  else
-  {
+  else{
     header('Location: index.php');
     exit();
   }
