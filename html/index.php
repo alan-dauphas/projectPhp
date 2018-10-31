@@ -7,9 +7,7 @@ try
   if (empty($_SERVER['QUERY_STRING'])){
     listPosts();
   }
-  elseif ($_GET['action'] == "deconnection"){
-    disconnectMember();
-  }
+
   elseif ($_GET['action'] == 'post'){
     if (isset($_GET['id']) && $_GET['id'] > 0){
         post();
@@ -61,7 +59,9 @@ try
   }
   elseif ($_GET['action'] == 'connection'){
     connectionMember($_POST['pseudonyme']);
-
+  }
+  elseif ($_GET['action'] == "deconnection"){
+    disconnectMember();
   }
 }
 

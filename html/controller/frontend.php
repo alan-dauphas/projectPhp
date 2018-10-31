@@ -51,9 +51,9 @@ function addComment($postId, $author, $comment){
 
 function connectionMember($pseudonyme){
 
-  $newConnectionMember = new MemberManager();
+  $connectionAdmistration = new MemberManager();
 
-  $connectionMember = $newConnectionMember->connectionAdministation($pseudonyme);
+  $connectionMember = $connectionAdmistration->connectionAdministation($pseudonyme);
 
   if ($connectionMember === false){
     throw new Exception('impossible de ce connecter!');
@@ -67,6 +67,8 @@ function connectionMember($pseudonyme){
 function disconnectMember(){
   session_start();
   session_destroy();
+  setcookie('login', '');
+  setcookie('passHash', '');
   header("Location: index.php");
   exit();
 }

@@ -6,9 +6,9 @@ class MemberManager extends Manager
   public function newRegistration($name, $pseudo, $pass, $email)
   {
     $db = $this->dbConnect();
-    $passhash = password_hash($pass, PASSWORD_DEFAULT);
+    $passHash = password_hash($pass, PASSWORD_DEFAULT);
     $members = $db->prepare('INSERT INTO members(name, pseudo, pass, mail, registration_date) VALUES(?, ?, ?, ?, NOW())');
-    $newMembers = $members->execute(array($name, $pseudo, $passhash, $email));
+    $newMembers = $members->execute(array($name, $pseudo, $passHash, $email));
 
     return $newMembers;
   }
@@ -18,12 +18,22 @@ class MemberManager extends Manager
 
     $db = $this->dbConnect();
     $connection = $db->prepare('SELECT id, pass FROM members WHERE pseudo = :pseudo');
-    $newConnection = $connection->execute(array('pseudo' => $_POST['pseudonyme']));
-    $resultat = $newConnection->fetch();
+    $connection->execute(array('pseudo' => $pseudonyme));
+    $resultat = $connection->fetch();
 
-    $isPasswordCorrect = password_verify($_POST['passConnection'], $resultat['pass']);
+    $PasswordCorrect = password_verify($_POST['passConnection'], $resultat['pass']);
+
+    if(!$PasswordCorrect){
+      throw new Exception("Erreur : mot de passe erroné");
+
+    }
+    else{
+      session_start();
+      $_SESSION['id'] = $resultat['id'];
+      $_SESSION['pseudo'] = $pseudonyme;
+    }
 
 
-      return $newConnection;
+      return $resultat;
   }
 }

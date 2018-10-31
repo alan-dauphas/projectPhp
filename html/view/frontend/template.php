@@ -1,7 +1,7 @@
 <?php
 session_start();
-var_dump($_SESSION);
 
+var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,6 +12,28 @@ var_dump($_SESSION);
     </head>
 
     <body>
+
+      <?php
+      if (!empty($_SESSION)) { ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
+        <a href="index.php?action=deconnection">Deconnection</a>
+      <?php }
+      elseif (empty($_GET['action']) ) { ?> <!-- Si aucune session, alors cela affiche le formulaire de connexion, uniquement sur la page d'acceuil du site -->
+
+        <a href="index.php?action=registration">Inscription</a>
+      <form action="index.php?action=connection" method="post">
+        <label>Pseudo</label> :<br /><input type="text" name="pseudonyme" size="15" />
+        <br />
+        <label>Mot de passe</label> :<br /><input type="password" name="passConnection" size="15" />
+        </br>
+        <label>Connexion Automatique</label> : <input type="checkbox" name="connectionAuto" />
+        </br>
+        <input id="validateButton" type="submit" />
+      </form>
+      <?php } ?>
+
+
+
+
       <p>Template Ok</p>
         <?= $content ?>
     </body>
