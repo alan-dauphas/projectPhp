@@ -64,8 +64,30 @@ try{
   elseif ($_GET['action'] == "administration"){
     administrationPostsComments();
   }
+  elseif ($_GET['action'] == "addPost"){
+    if ($_GET['action'] == 'addPost' && isset($_GET['newPost']) && $_GET['newPost'] == 'confirm') {
+      if (isset($_POST['title']) && !empty($_POST['title']) && isset($_POST['content']) && !empty($_POST['content'])) {
+        extract($_POST);
+        addNewPost($title, $content);
+      }
+      else{
+        throw new Exception("Erreur : tous les champs ne sont pas remplis !");
+      }
+    }
+    else {
+      newPostView();
+    }
+  }
+  elseif ($_GET['action'] == "deletePost"){
+    if ($_GET['action'] == 'deletePost' && isset($_GET['id']) && !empty($_GET['id'])) {
+      extract($_GET);
+      delPost($id);
+    }
+    else {
+      throw new Exception("Erreur : impossible de supprimer ce post !");
+    }
+  }
 }
-
 catch(Exception $e){
   $errorMessage = $e->getMessage();
   require("view/frontend/errorView.php");

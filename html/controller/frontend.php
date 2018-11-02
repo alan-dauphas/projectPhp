@@ -98,3 +98,32 @@ function administrationPostsComments(){
 
   require('/view/frontend/administrationView.php');
 }
+function newPostView(){
+  require('/view/frontend/addPostView.php');
+}
+function addNewPost($postId){
+  $newPostManager = new PostManager();
+
+  $newPost = $newPostManager->newPost($title, $content);
+
+  if ($newPost === false){
+    throw new Exception('impossible d\'ajouter un nouveau post !');
+  }
+  else{
+    header('Location: index.php');
+    exit();
+  }
+}
+function delPost($postId){
+  $delPostManager = new PostManager();
+
+  $delPost = $delPostManager->deletePost($postId);
+
+  if ($postID === false){
+    throw new Exception('impossible de supprimer ce post !');
+  }
+  else{
+    header('Location: index.php');
+    exit();
+  }
+}

@@ -1,3 +1,4 @@
+
 <?php $title = 'Administration - Moon Blog';
 
 session_start();
@@ -12,7 +13,7 @@ session_start();
 <?php if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
 
 
-  <h1>Page d'Administration</h1>
+  <h1>Bienvenu sur la Page d'Administration</h1>
   <a href="index.php?action=addPost">Ajouter un Post</a>
   <h3>Dernier Post</h3>
 
@@ -58,7 +59,8 @@ session_start();
       ------
   <?php
   }
-} else {
+}
+else {
   echo "vous n'etes pas connecté";
 }
   ?>

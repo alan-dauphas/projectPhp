@@ -1,4 +1,5 @@
 <?php $title = "Inscription" ;
+session_start();
 
 ob_start(); ?>
 <p><a href="index.php">Retour à la liste des billets</a></p>

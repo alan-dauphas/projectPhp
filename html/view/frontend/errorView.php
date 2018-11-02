@@ -1,6 +1,6 @@
 <?php
 $title = "Page Erreur";
-
+session_start();
 ob_start();
 ?>
 <div style="text-align:center">
