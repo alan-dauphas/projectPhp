@@ -127,3 +127,16 @@ function delPost($postId){
     exit();
   }
 }
+function delComment($id){
+  $delCommentManager = new CommentManager();
+
+  $delComment = $delCommentManager->deleteComment($id);
+
+  if ($id === false){
+    throw new Exception('impossible de supprimer ce commentaire !');
+  }
+  else{
+    header('Location: index.php');
+    exit();
+  }
+}

@@ -11,7 +11,6 @@ class CommentManager extends Manager
       return $comments;
   }
 
-
   public function postComment($postId, $author, $comment){
       $db = $this->dbConnect();
       $addcomments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
@@ -25,5 +24,11 @@ class CommentManager extends Manager
       $commentsAdmin = $db->query('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments  ORDER BY comment_date DESC LIMIT 0, 50');
 
       return $commentsAdmin;
+  }
+
+  public function deleteComment($id){
+    $db = $this->dbConnect();
+    $req = $db->prepare('DELETE FROM comments WHERE id = ?');
+    $req->execute(array($id));
   }
 }

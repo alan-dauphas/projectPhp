@@ -87,6 +87,15 @@ try{
       throw new Exception("Erreur : impossible de supprimer ce post !");
     }
   }
+  elseif ($_GET['action'] == "deleteComm"){
+    if ($_GET['action'] == 'deleteComm' && isset($_GET['id']) && !empty($_GET['id'])) {
+      extract($_GET);
+      delComment($id);
+    }
+    else {
+      throw new Exception("Erreur : impossible de supprimer ce commentaire !");
+    }
+  }
 }
 catch(Exception $e){
   $errorMessage = $e->getMessage();

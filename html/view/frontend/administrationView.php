@@ -36,7 +36,7 @@ session_start();
           </p>
       </div>
       <a href="index.php?action=modifPost&id=<?= $data['id']?>">Lien qui renvoie vers une nouvelle page pour MODIFIER ce chapitre non fonctionnel pour le moment</a><br/>
-      <a href="index.php?action=deletePost&id=<?= $data['id']?>">Lien qui SUPPRIME ce chapitre non fonctionnel pour le moment</a><br/>
+      <a href="index.php?action=deletePost&id=<?= $data['id']?>">Supprimer</a><br/>
 
   <?php
   }
@@ -53,7 +53,7 @@ session_start();
         Auteur : <strong><?= htmlspecialchars(ucfirst($comment['author'])) ?></strong> <br />
         Le <?= $comment['comment_date_fr'] ?></p>
       <p><?= nl2br(ucfirst(strip_tags($comment['comment']))) ?></p>
-      <a href="#">Lien pour supprimer un commentaires non fonctionnel pour le moment</a>
+      <a href="index.php?action=deleteComm&id=<?= $comment['id']?>">Supprimer</a>
       <br/>
 
       ------
