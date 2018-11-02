@@ -22,7 +22,6 @@ function listPosts(){
 
     require('/view/frontend/listPostsView.php');
 }
-
 function post(){
     $postManager = new PostManager();
     $commentManager = new CommentManager();
@@ -32,7 +31,6 @@ function post(){
 
     require('/view/frontend/postView.php');
 }
-
 function addComment($postId, $author, $comment){
 
   $commentManager = new CommentManager();
@@ -49,34 +47,10 @@ function addComment($postId, $author, $comment){
   }
 }
 
-function connectionMember($pseudonyme){
-
-  $connectionAdmistration = new MemberManager();
-
-  $connectionMember = $connectionAdmistration->connectionAdministation($pseudonyme);
-
-  if ($connectionMember === false){
-    throw new Exception('impossible de ce connecter!');
-  }
-  else{
-    header('Location: index.php');
-    exit();
-  }
-}
-
-function disconnectMember(){
-  session_start();
-  session_destroy();
-  setcookie('login', '');
-  setcookie('passHash', '');
-  header("Location: index.php");
-  exit();
-}
-
+// Partie Membres, Connexion, Déconnexion,
 function registration(){
   require('/view/frontend/registrationView.php');
 }
-
 function addMembers($name, $pseudo, $pass, $email){
 
   $newMembersManager = new MemberManager();
@@ -90,4 +64,37 @@ function addMembers($name, $pseudo, $pass, $email){
     header('Location: index.php');
     exit();
   }
+}
+function connectionMember($pseudonyme){
+
+  $connectionAdmistration = new MemberManager();
+
+  $connectionMember = $connectionAdmistration->connectionAdministation($pseudonyme);
+
+  if ($connectionMember === false){
+    throw new Exception('impossible de ce connecter!');
+  }
+  else{
+    header('Location: index.php?action=administration');
+    exit();
+  }
+}
+function disconnectMember(){
+  session_start();
+  session_destroy();
+  setcookie('login', '');
+  setcookie('passHash', '');
+  header("Location: index.php");
+  exit();
+}
+
+// Administration
+function administrationPostsComments(){
+  $postsAdministration = new PostManager();
+  $commentAdministration = new CommentManager();
+
+  $postAdmin = $postsAdministration->getPostsAdministration();
+  $commentsAdmin = $commentAdministration->getCommentsAdministration();
+
+  require('/view/frontend/administrationView.php');
 }

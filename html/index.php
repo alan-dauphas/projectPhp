@@ -2,12 +2,10 @@
 require('controller/frontend.php');
 
 
-try
-{
+try{
   if (empty($_SERVER['QUERY_STRING'])){
     listPosts();
   }
-
   elseif ($_GET['action'] == 'post'){
     if (isset($_GET['id']) && $_GET['id'] > 0){
         post();
@@ -63,46 +61,12 @@ try
   elseif ($_GET['action'] == "deconnection"){
     disconnectMember();
   }
+  elseif ($_GET['action'] == "administration"){
+    administrationPostsComments();
+  }
 }
 
-catch(Exception $e)
-{
+catch(Exception $e){
   $errorMessage = $e->getMessage();
   require("view/frontend/errorView.php");
 }
-
-
-// $errors = [];
-//
-// extract($_POST); //permet de ne pas remettre "$_POST" a chaque fois devant les différentes variables
-//
-// if(mb_strlen($pseudo) < 2)
-// {
-//   $errors[] = "Votre pseudonyme doit comporter au minimum 3 caractères";
-// }
-//
-// if(!filter_var($mail, FILTER_VALIDATE_EMAIL))
-// {
-//   $errors[] = "Mail invalide";
-// }
-//
-// if (mb_strlen($pass) < 6 && mb_strlen($pass) > 12)
-// {
-//   $errors[] = "Votre mot de passe doit comporter entre 6 et 12 caractères";
-// }
-// else
-// {
-//   if ($pass != $pass_confirm)
-//   {
-//     $errors[] = "Les mots de passe sont différents !";
-//   }
-// }
-//
-// if(count($errors) == 0)
-// {
-//   addMembers($_POST['name'], $_POST['pseudo'], $_POST['mail'], $_POST['pass']);
-// }
-// elseif (count($error) >= 1) {
-//   echo $errors;
-// }
-// }

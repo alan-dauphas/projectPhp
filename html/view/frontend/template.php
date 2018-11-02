@@ -1,7 +1,7 @@
 <?php
-session_start();
 
 var_dump($_SESSION);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,10 +14,11 @@ var_dump($_SESSION);
     <body>
 
       <?php
-      if (!empty($_SESSION)) { ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
-        <a href="index.php?action=deconnection">Deconnection</a>
+      if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
+        <a href="index.php?action=deconnection">Déconnexion</a>
+        <a href="index.php?action=administration">Administration</a>
       <?php }
-      elseif (empty($_GET['action']) ) { ?> <!-- Si aucune session, alors cela affiche le formulaire de connexion, uniquement sur la page d'acceuil du site -->
+      elseif (empty($_GET['action'])){ ?> <!-- Si aucune session, alors cela affiche le formulaire de connexion, uniquement sur la page d'acceuil du site -->
 
         <a href="index.php?action=registration">Inscription</a>
       <form action="index.php?action=connection" method="post">

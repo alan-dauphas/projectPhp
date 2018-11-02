@@ -1,4 +1,7 @@
-<?php $title = htmlspecialchars($post['title']); ?>
+<?php $title = htmlspecialchars($post['title']);
+
+session_start();
+?>
 
 <?php ob_start(); ?>
 <p><a href="index.php">Retour à la liste des billets</a></p>
@@ -21,8 +24,9 @@
 <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
     <div>
         <label for="author">Auteur</label><br />
-        <input type="varchar" id="author" name="author"/>
+        <input type="varchar" id="author" name="author" value="<?= $_SESSION['pseudo']; ?>"/>
     </div>
+    <?= $_SESSION["pseudo"]; ?>
     <div>
         <label for="comment">Commentaire</label><br />
         <textarea type="text" id="comment" name="comment"></textarea>
@@ -34,8 +38,7 @@
 
 
 <?php
-while ($comment = $comments->fetch())
-{
+while ($comment = $comments->fetch()){
 ?>
     <p><strong><?= htmlspecialchars(ucfirst($comment['author'])) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
     <p><?= nl2br(ucfirst(strip_tags($comment['comment']))) ?></p>

@@ -1,6 +1,7 @@
-<?php
+<?php $title = 'Acceuil - Mon blog';
+session_start();
 
-$title = 'Acceuil - Mon blog'; ?>
+ ?>
 
 <?php ob_start();  ?>
 
@@ -12,18 +13,19 @@ $title = 'Acceuil - Mon blog'; ?>
 <p>Derniers billets du blog :</p>
 
 
+
 <?php
-while ($data = $posts->fetch())
-{
+while ($data = $posts->fetch()){
 ?>
     <div class="news">
+
         <h3>
             <?= htmlspecialchars($data['title']) ?>
             <em>le <?= $data['creation_date_fr'] ?></em>
         </h3>
 
         <p>
-            <?= nl2br(htmlspecialchars($data['content'])) ?>
+            <?= substr(nl2br(htmlspecialchars($data['content'])),0,250) . "..." ?>
             <br />
             <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
         </p>
