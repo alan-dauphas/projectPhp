@@ -32,10 +32,16 @@ session_start();
           <p>
               <?= substr(nl2br(htmlspecialchars($data['content'])),0,250) . "..." ?>
               <br />
-              <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
+              <em><a href="index.php?action=post&amp;postId=<?= $data['id'] ?>">Commentaires</a></em>
           </p>
       </div>
-      <a href="index.php?action=modifPost&id=<?= $data['id']?>">Lien qui renvoie vers une nouvelle page pour MODIFIER ce chapitre non fonctionnel pour le moment</a><br/>
+
+
+      <a href="index.php?action=modifPost&postId=<?= $data['id']?>">MODIFIER</a><br/>
+
+
+
+
       <a href="index.php?action=deletePost&id=<?= $data['id']?>">Supprimer</a><br/>
 
   <?php

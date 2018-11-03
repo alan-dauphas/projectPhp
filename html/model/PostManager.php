@@ -37,4 +37,10 @@ class PostManager extends Manager{
     $req = $db->prepare('DELETE FROM posts WHERE id = ?');
     $req->execute(array($postId));
   }
+//modifier un posts
+  public function updatePost($postId){
+    $db = $this->dbConnect();
+    $req = $db->prepare('UPDATE posts SET title = ?, content = ? WHERE id =  ?' );
+    $req->execute(array($_POST['title'], $_POST['content'], $postId));
+  }
 }

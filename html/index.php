@@ -8,7 +8,7 @@ try{
   }
   elseif ($_GET['action'] == 'post'){
     if (isset($_GET['id']) && $_GET['id'] > 0){
-        post();
+        postAndComment();
     }
     else{
       throw new Exception("Erreur : Aucun identifiant de billet envoyé");
@@ -94,6 +94,15 @@ try{
     }
     else {
       throw new Exception("Erreur : impossible de supprimer ce commentaire !");
+    }
+  }
+  elseif ($_GET['action'] == "modifPost"){
+    if ($_GET['action'] == 'modifPost' && isset($_GET['postId']) && !empty($_GET['postId'])) {
+      extract($_GET);
+      post($postId);
+      if (isset($_GET['modification']) && $_GET['modification'] == "confirm") {
+         updatePost($postId);
+      }
     }
   }
 }

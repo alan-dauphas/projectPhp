@@ -15,21 +15,32 @@ require_once('model/MemberManager.php');
 //     // code...*
 //   }
 // }
-
+//demande l'affichage des 5 premiers posts pour la page d'acceuil
 function listPosts(){
     $postManager = new PostManager();
     $posts = $postManager->getPosts();
 
     require('/view/frontend/listPostsView.php');
 }
-function post(){
-    $postManager = new PostManager();
-    $commentManager = new CommentManager();
 
-    $post = $postManager->getPost($_GET['id']);
-    $comments = $commentManager->getComments($_GET['id']);
+//demande l'affichage d'un post
+function post($postId){
+  $postManager = new PostManager();
 
-    require('/view/frontend/postView.php');
+  $post = $postManager->getPost($postId);
+  require('/view/frontend/modifPostView.php');
+
+}
+
+//demande l'affichage d'un post et ses commentaires
+function postAndComment(){
+  $postManager = new PostManager();
+  $commentManager = new CommentManager();
+
+  $post = $postManager->getPost($_GET['id']);
+  $comments = $commentManager->getComments($_GET['id']);
+
+  require('/view/frontend/postView.php');
 }
 function addComment($postId, $author, $comment){
 
@@ -101,7 +112,7 @@ function administrationPostsComments(){
 function newPostView(){
   require('/view/frontend/addPostView.php');
 }
-function addNewPost($postId){
+function addNewPost($title, $content){
   $newPostManager = new PostManager();
 
   $newPost = $newPostManager->newPost($title, $content);
@@ -119,7 +130,7 @@ function delPost($postId){
 
   $delPost = $delPostManager->deletePost($postId);
 
-  if ($postID === false){
+  if ($delPost === false){
     throw new Exception('impossible de supprimer ce post !');
   }
   else{
@@ -132,8 +143,21 @@ function delComment($id){
 
   $delComment = $delCommentManager->deleteComment($id);
 
-  if ($id === false){
+  if ($delComment === false){
     throw new Exception('impossible de supprimer ce commentaire !');
+  }
+  else{
+    header('Location: index.php');
+    exit();
+  }
+}
+function updatePost($postId){
+  $updatePostManager = new PostManager();
+
+  $updatePost = $updatePostManager->updatePost($postId);
+
+  if ($updatePost === false){
+    throw new Exception('impossible de modifier ce commentaire !');
   }
   else{
     header('Location: index.php');
