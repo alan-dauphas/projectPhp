@@ -15,6 +15,8 @@ require_once('model/MemberManager.php');
 //     // code...*
 //   }
 // }
+
+
 //demande l'affichage des 5 premiers posts pour la page d'acceuil
 function listPosts(){
     $postManager = new PostManager();
