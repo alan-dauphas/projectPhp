@@ -105,6 +105,15 @@ try{
       }
     }
   }
+
+
+  // Ce "elseif" sert a faire des tests sur une page test.
+  elseif ($_GET['action'] == "test"){
+    test();
+  }
+
+
+
 }
 catch(Exception $e){
   $errorMessage = $e->getMessage();

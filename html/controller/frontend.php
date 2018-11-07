@@ -4,6 +4,9 @@ require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/MemberManager.php');
 
+// require de test
+require_once('model/Post.php');
+
 /**
  *
  */
@@ -165,4 +168,11 @@ function updatePost($postId){
     header('Location: index.php');
     exit();
   }
+}
+
+function test(){
+  $articles = new Article();
+
+  $article = $articles->Article();
+  require('/view/frontend/testPageView.php');
 }

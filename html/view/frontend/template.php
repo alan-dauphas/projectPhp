@@ -12,6 +12,7 @@ var_dump($_SESSION);
     </head>
 
     <body>
+      <a href="index.php?action=test">Test</a><br />
 
       <?php
       if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
