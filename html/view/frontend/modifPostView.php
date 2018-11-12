@@ -20,7 +20,6 @@ ob_start(); ?>
 </div>
 
 
-
 <h1>Modifier le post</h1>
 <form action="index.php?action=modifPost&postId=<?= $post['id'] ?>&modification=confirm" method="post">
 

@@ -18,7 +18,8 @@ session_start();
         <?= nl2br(htmlspecialchars($post['content'])) ?>
     </p>
 </div>
-// -----------------------------
+<?php /*
+// -------------Fait avec Smaine----------------
 
 
 <div class="news">
@@ -30,25 +31,16 @@ session_start();
     <p>
         <?= nl2br(htmlspecialchars($post['content'])) ?>
     </p>
-</div>
-
-
-
-
-
-
-
-
-
+</div>*/
+?>
 
 <h2>Commentaires</h2>
 
 <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
     <div>
         <label for="author">Auteur</label><br />
-        <input type="varchar" id="author" name="author" value="<?= $_SESSION['pseudo']; ?>"/>
+        <input type="varchar" id="author" name="author" value="<?php if($_SESSION){echo $_SESSION['pseudo'];} ?>"/>
     </div>
-    <?= $_SESSION["pseudo"]; ?>
     <div>
         <label for="comment">Commentaire</label><br />
         <textarea type="text" id="comment" name="comment"></textarea>

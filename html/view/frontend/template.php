@@ -1,5 +1,8 @@
 <?php
 
+echo "Template chargée<br/><br/>";
+echo "Test de session :";
+
 var_dump($_SESSION);
 
 ?>

@@ -4,8 +4,6 @@ require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/MemberManager.php');
 
-// require de test
-require_once('model/Post.php');
 
 /**
  *
@@ -34,7 +32,6 @@ function post($postId){
 
   $post = $postManager->getPost($postId);
   require('/view/frontend/modifPostView.php');
-
 }
 
 //demande l'affichage d'un post et ses commentaires
@@ -170,9 +167,11 @@ function updatePost($postId){
   }
 }
 
+// require de test
+require_once('model/Article.php');
+
 function test(){
   $articles = new Article();
 
-  $article = $articles->Article();
   require('/view/frontend/testPageView.php');
 }
