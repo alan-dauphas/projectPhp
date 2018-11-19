@@ -1,34 +1,35 @@
-<?php $title = 'Acceuil - Mon blog';
-session_start();
+<?php
+  $title = 'Acceuil - Mon blog';
+  session_start();
+?>
 
- ?>
-
-<?php ob_start();  ?>
-
+<?php
+  ob_start();
+?>
 
 <h1>Mon super blog !</h1>
-<p>Derniers billets du blog :</p>
+<h2>Derniers billets du blog :</h2>
+<div class="news">
 
-<?php
-while ($data = $posts->fetch()){
-?>
-    <div class="news">
-
+    <?php foreach ($posts as $post):?>
         <h3>
-            <?= htmlspecialchars($data['title']) ?>
-            <em>le <?= $data['creation_date_fr'] ?></em>
+            <?= $post->getTitle(); ?>
         </h3>
+    <p>
+        <?= $post->getCreationDateFr(); ?>
+    </p>
 
-        <p>
-            <?= substr(nl2br(htmlspecialchars($data['content'])),0,250) . "..." ?>
-            <br />
-            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
-        </p>
-    </div>
-<?php
-}
-$posts->closeCursor();
-?>
+    <p>
+        <?= $post->getContent(); ?>
+    </p>
+
+    <div class="text-center">
+
+    <a href="index.php?action=post&id=<?= $post->getId();?>">Lien</a>
+  </div>
+      <?php endforeach; ?>
+</div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('/view/frontend/template.php'); ?>

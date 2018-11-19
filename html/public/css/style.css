@@ -1,7 +1,87 @@
+[class*="col-"] {
+    margin-bottom: 20px;
+    border: 1px dashed grey;
+}
+
+
+html {
+    margin: 10px;
+}
+
+
+html body {
+    background-color: #CD4C47;
+}
+
+
+/* HEADER */
+header {
+    background-size: 100%;
+    background-image: url(../picture/background/orchid_art.jpg);
+    border-radius: 25px 25px 0 0;
+}
+
+/* LOGO */
+#logo {
+    margin: 20px 0 0 20px;
+    width: 40px;
+}
+
+
+#nameSite {
+    margin-top: 15px;
+    text-align: center;
+    color: black;
+}
+
+.buttonDeconnexion{
+  text-align: right;
+}
+
+/*Navigation bar*/
+.navbar{
+  background-color: transparent;
+  border-color: transparent;
+  display: flex;
+  margin: auto;
+}
+
+
+/* Formulaire connexion */
+
+#loginForm {
+    float: right;
+    margin-right: 5px;
+}
+
+#validateButton {
+    opacity: 0.6;
+}
+
+#validateButton:hover {
+    opacity: 1;
+}
+
+#imgPen {
+    background: url(../picture/background/fondEcran.jpg) no-repeat;
+    background-size: cover;
+    border-radius: 0 0 25px 25px;
+    height: 490px;
+}
+
+.buttonCenter {
+    display: block;
+    margin : auto;
+}
+
+
+/* ----------------- */
+
 h1, h2, h3
 {
     text-align:center;
 }
+
 h3
 {
     background-color:black;
@@ -15,6 +95,7 @@ h3
     background-color:#CCCCCC;
     margin-top:0px;
 }
+
 .news
 {
     width:70%;

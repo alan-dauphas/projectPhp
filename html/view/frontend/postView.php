@@ -4,7 +4,6 @@ session_start();
 ?>
 
 <?php ob_start(); ?>
-<p><a href="index.php">Retour à la liste des billets</a></p>
 
 <h1>Mon super blog !</h1>
 

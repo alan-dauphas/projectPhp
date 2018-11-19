@@ -1,30 +1,20 @@
-<?php
-require_once('model/Article.php');
+<a href="index.php">ACCEUIL</a>
 
-$article_1 = new Article();
-$article;
-
-$article_1->setId(25);
-$article_1->setTitle("<strong>blabla</strong>");
-
-echo $article_1->getId();
-echo $article_1->getTitle();
-
-
-var_dump($article_1);
-var_dump($row['id']);
-var_dump($posts);
-
-
-
-?>
 <div class="news">
+
+      <?php foreach ($posts as $post):?>
     <h3>
-        <?= $post->getId($row['id']) ?>
-        <em>le <?= $post['creation_date_fr'] ?></em>
+        <em> le <?= $post->getTitle(); ?></em>
     </h3>
+    <p>
+        <?= $post->getCreationDateFr(); ?>
+    </p>
 
     <p>
-        <?= nl2br(htmlspecialchars($posts['content'])) ?>
+        <?= $post->getContent(); ?>
     </p>
+
+
+    <a href="index.php?action=post&id=<?= $post->getId();?>">Lien</a>
+      <?php endforeach; ?>
 </div>

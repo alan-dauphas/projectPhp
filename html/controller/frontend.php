@@ -168,10 +168,12 @@ function updatePost($postId){
 }
 
 // require de test
-require_once('model/Article.php');
+
 
 function test(){
-  $articles = new Article();
+  $postManager = new PostManager();
+  $posts = $postManager->getPosts();
+
 
   require('/view/frontend/testPageView.php');
 }

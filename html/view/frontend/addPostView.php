@@ -4,7 +4,6 @@ session_start();
 ob_start();
 ?>
 
-<p><a href="index.php">Retour à la liste des billets</a></p>
 
 
 <?php if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->

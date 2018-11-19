@@ -8,13 +8,13 @@ session_start();
 <?php ob_start();  ?>
 
 
-<p><a href="index.php">Retour à la liste des billets</a></p>
 
 <?php if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
 
 
   <h1>Bienvenu sur la Page d'Administration</h1>
-  <a href="index.php?action=addPost">Ajouter un Post</a>
+  <input class="buttonCenter" type="button" value="Ajouter un Post" onclick="javascript:location.href='index.php?action=addPost'">
+
   <h3>Dernier Post</h3>
 
 
@@ -32,17 +32,13 @@ session_start();
           <p>
               <?= substr(nl2br(htmlspecialchars($data['content'])),0,250) . "..." ?>
               <br />
-              <em><a href="index.php?action=post&amp;postId=<?= $data['id'] ?>">Commentaires</a></em>
+              <em><a href="index.php?action=post&amp;postId=<?= $data['id'] ?>">Commentaires...</a></em>
           </p>
       </div>
 
 
-      <a href="index.php?action=modifPost&postId=<?= $data['id']?>">MODIFIER</a><br/>
-
-
-
-
-      <a href="index.php?action=deletePost&id=<?= $data['id']?>">Supprimer</a><br/>
+      <input class="btn btn-warning buttonCenter" type="button" value="Modifier" onclick="javascript:location.href='index.php?action=modifPost&postId=<?= $data['id']?>'"> -
+      <input class="btn btn-danger buttonCenter" type="button" value="Supprimer" onclick="javascript:location.href='index.php?action=deletePost&id=<?= $data['id']?>'">
 
   <?php
   }
@@ -59,8 +55,7 @@ session_start();
         Auteur : <strong><?= htmlspecialchars(ucfirst($comment['author'])) ?></strong> <br />
         Le <?= $comment['comment_date_fr'] ?></p>
       <p><?= nl2br(ucfirst(strip_tags($comment['comment']))) ?></p>
-      <a href="index.php?action=deleteComm&id=<?= $comment['id']?>">Supprimer</a>
-      <br/>
+            <input class="btn btn-danger buttonCenter" type="button" value="Supprimer" onclick="javascript:location.href='index.php?action=deleteComm&id=<?= $comment['id']?>'">
 
       ------
   <?php
