@@ -1,63 +1,53 @@
-<?php $title = htmlspecialchars($post['title']);
+<?php $title = $post->getTitle();
 
 session_start();
 ?>
 
-<?php ob_start(); ?>
+	<?php ob_start(); ?>
 
-<h1>Mon super blog !</h1>
+		<h1>Mon super blog !</h1>
 
-<div class="news">
-    <h3>
-        <?= htmlspecialchars($post['title']) ?>
-        <em>le <?= $post['creation_date_fr'] ?></em>
-    </h3>
+		<div class="news">
+      	<h3>
+      	<?= $post->getTitle(); ?>
+      		<em>le <?= $post->getCreationDateFr(); ?></em>
+      	</h3>
 
-    <p>
-        <?= nl2br(htmlspecialchars($post['content'])) ?>
-    </p>
-</div>
-<?php /*
-// -------------Fait avec Smaine----------------
+      			<p>
+      			<?= $post->getContent() ?>
+      			</p>
+		</div>
 
 
-<div class="news">
-    <h3>
-        <?= $post->getTitle() ?>
-        <em>le <?= $post['creation_date_fr'] ?></em>
-    </h3>
+				<h2>Commentaires</h2>
 
-    <p>
-        <?= nl2br(htmlspecialchars($post['content'])) ?>
-    </p>
-</div>*/
-?>
+				<?php foreach ($comments as $comment):?>
+					<p><strong><?= $comment->getAuthor(); ?></strong> le <?= $comment->getCommentDateFr(); ?></p>
+						<p><?= $comment->getComment(); ?></p>
 
-<h2>Commentaires</h2>
+							<?php if($comment->isSignaled()): ?>
+								<p>Commentaire signaler</p>
+								<?php else:  ?>
+									<a href='index.php?action=reporting&id=<?= $comment->getId();?>'>Signaler</a>
+									<?php endif; ?>
 
-<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
-    <div>
-        <label for="author">Auteur</label><br />
-        <input type="varchar" id="author" name="author" value="<?php if($_SESSION){echo $_SESSION['pseudo'];} ?>"/>
-    </div>
-    <div>
-        <label for="comment">Commentaire</label><br />
-        <textarea type="text" id="comment" name="comment"></textarea>
-    </div>
-    <div>
-        <input type="submit" value="Confirmer" />
-    </div>
-</form>
+										<?php endforeach; ?>
+										<p>
 
+												-----
 
-<?php
-while ($comment = $comments->fetch()){
-?>
-    <p><strong><?= htmlspecialchars(ucfirst($comment['author'])) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-    <p><?= nl2br(ucfirst(strip_tags($comment['comment']))) ?></p>
-<?php
-}
-?>
+	   <form action="index.php?action=addComment&amp;id=<?= $_GET['id']; ?>" method="post">
+
+				<label for="author">Auteur</label><br />
+					<input type="varchar" id="author" name="author" value="<?php if($_SESSION){echo $_SESSION['pseudo'];} ?>"/><br />
+
+				<label for="comment">Commentaire</label><br />
+					<textarea type="text" id="comment" name="comment"></textarea>
+
+					<input type="submit" value="Confirmer" />
+
+		</form>
+</p>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('/view/frontend/template.php'); ?>

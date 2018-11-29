@@ -5,52 +5,55 @@ require_once('model/CommentManager.php');
 require_once('model/MemberManager.php');
 
 
-/**
- *
- */
-// class PostController
+// function test()
 // {
+//   $postManager = new PostManager();
+//   $post = $postManager->readPost($_GET['id']);
 //
-//   function __construct(argument)
-//   {
-//     // code...*
-//   }
+//
+//   require('/view/frontend/testPageView.php');
 // }
 
-
 //demande l'affichage des 5 premiers posts pour la page d'acceuil
-function listPosts(){
+function listPosts()
+{
     $postManager = new PostManager();
-    $posts = $postManager->getPosts();
+    $posts = $postManager->readAllPosts();
 
     require('/view/frontend/listPostsView.php');
 }
 
 //demande l'affichage d'un post
-function post($postId){
+function post($postId)
+{
   $postManager = new PostManager();
+  $post = $postManager->readPost($postId);
 
-  $post = $postManager->getPost($postId);
   require('/view/frontend/modifPostView.php');
 }
 
 //demande l'affichage d'un post et ses commentaires
-function postAndComment(){
+function postAndComment()
+{
   $postManager = new PostManager();
-  $commentManager = new CommentManager();
+  $post = $postManager->readPost($_GET['id']);
 
-  $post = $postManager->getPost($_GET['id']);
-  $comments = $commentManager->getComments($_GET['id']);
+  $commentManager = new CommentManager();
+  $comments = $commentManager->readComments($_GET['id']);
 
   require('/view/frontend/postView.php');
 }
-function addComment($postId, $author, $comment){
+
+function newComment($postId, $author, $comment)
+{
 
   $commentManager = new CommentManager();
 
-  $newComments = $commentManager->postComment($postId, $author, $comment);
+  $newComments = $commentManager->addComment($postId, $author, $comment);
 
   if ($newComments === false) {
+    var_dump($newComments);
+
     throw new Exception('Impossible d\'ajouter le commentaire !');
   }
   else
@@ -61,10 +64,13 @@ function addComment($postId, $author, $comment){
 }
 
 // Partie Membres, Connexion, Déconnexion,
-function registration(){
+function registration()
+{
   require('/view/frontend/registrationView.php');
 }
-function addMembers($name, $pseudo, $pass, $email){
+
+function addMembers($name, $pseudo, $pass, $email)
+{
 
   $newMembersManager = new MemberManager();
 
@@ -78,7 +84,9 @@ function addMembers($name, $pseudo, $pass, $email){
     exit();
   }
 }
-function connectionMember($pseudonyme){
+
+function connectionMember($pseudonyme)
+{
 
   $connectionAdmistration = new MemberManager();
 
@@ -92,7 +100,9 @@ function connectionMember($pseudonyme){
     exit();
   }
 }
-function disconnectMember(){
+
+function disconnectMember()
+{
   session_start();
   session_destroy();
   setcookie('login', '');
@@ -102,78 +112,107 @@ function disconnectMember(){
 }
 
 // Administration
-function administrationPostsComments(){
-  $postsAdministration = new PostManager();
+function administration_Posts_And_Comments()
+{
+  $postManager = new PostManager();
+  $posts = $postManager->lastPostsAdministration();
   $commentAdministration = new CommentManager();
 
-  $postAdmin = $postsAdministration->getPostsAdministration();
-  $commentsAdmin = $commentAdministration->getCommentsAdministration();
+
+  $commentManager = new CommentManager();
+  $comments = $commentManager->readAllComments();
 
   require('/view/frontend/administrationView.php');
 }
-function newPostView(){
+
+function newPostView()
+{
   require('/view/frontend/addPostView.php');
 }
-function addNewPost($title, $content){
+
+function addNewPost($title, $content)
+{
   $newPostManager = new PostManager();
 
   $newPost = $newPostManager->newPost($title, $content);
 
-  if ($newPost === false){
+  if ($newPost === false)
+  {
     throw new Exception('impossible d\'ajouter un nouveau post !');
   }
-  else{
-    header('Location: index.php');
+  else
+  {
+    header('Location: index.php?action=administration');
     exit();
   }
 }
-function delPost($postId){
+
+function delPost($postId)
+{
   $delPostManager = new PostManager();
 
   $delPost = $delPostManager->deletePost($postId);
 
-  if ($delPost === false){
+  if ($delPost === 0)
+  {
     throw new Exception('impossible de supprimer ce post !');
   }
-  else{
-    header('Location: index.php');
+  else
+  {
+    header('Location: index.php?action=administration');
     exit();
   }
 }
-function delComment($id){
-  $delCommentManager = new CommentManager();
 
-  $delComment = $delCommentManager->deleteComment($id);
-
-  if ($delComment === false){
-    throw new Exception('impossible de supprimer ce commentaire !');
-  }
-  else{
-    header('Location: index.php');
-    exit();
-  }
-}
-function updatePost($postId){
+function updatePost($postId)
+{
   $updatePostManager = new PostManager();
 
-  $updatePost = $updatePostManager->updatePost($postId);
+  $updatePost = $updatePostManager->updatePostManager($postId);
 
-  if ($updatePost === false){
+  if ($updatePost === false)
+  {
     throw new Exception('impossible de modifier ce commentaire !');
   }
-  else{
-    header('Location: index.php');
+  else
+  {
+    header('Location: index.php?action=administration');
     exit();
   }
 }
 
-// require de test
+function delComment($id)
+{
+  $delCommentManager = new CommentManager();
 
+  $delComment = $delCommentManager->deleteCommentManager($id);
 
-function test(){
-  $postManager = new PostManager();
-  $posts = $postManager->getPosts();
-
-
-  require('/view/frontend/testPageView.php');
+  if ($delComment === false)
+  {
+    throw new Exception('impossible de supprimer ce commentaire !');
+  }
+  else
+  {
+    header('Location: index.php?action=administration');
+    exit();
+  }
 }
+
+function reportingComment($id){
+  $reportingCommentManager = new CommentManager();
+
+  $reportingComment = $reportingCommentManager->reportingCommentManager($id);
+
+  if ($reportingComment === false)
+  {
+    throw new Exception('Impossible de signaler ce commentaire !');
+  }
+  else
+  {
+    header('Location: index.php?action=post&id=' . $_GET['id']);
+    exit();
+  }
+}
+
+
+// require de test

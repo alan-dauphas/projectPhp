@@ -1,4 +1,6 @@
 <?php
+require_once("Manager.php");
+
 
 class Comment extends Manager
 {
@@ -8,11 +10,15 @@ class Comment extends Manager
 
     private $id;
 
-    private $title;
+    private $post_id;
 
-    private $content;
+    private $author;
 
-    private $creationDateFr;
+    private $comment;
+
+    private $reporting;
+
+    private $commentDateFr;
 
     private $row;
 
@@ -26,21 +32,27 @@ class Comment extends Manager
 
     }
 
-    public function setTitle($title){
+    public function setAuthor($author){
 
-      $this->title = $title;
-
-    }
-
-    public function setContent($content){
-
-      $this->content = $content;
+      $this->author = $author;
 
     }
 
-    public function setCreationDateFr($creationDateFr){
+    public function setComment($comment){
 
-      $this->creationDateFr = $creationDateFr;
+      $this->comment = $comment;
+
+    }
+
+    public function setReporting($reporting){
+
+      $this->reporting = $reporting;
+
+    }
+
+    public function setCommentDateFr($commentDateFr){
+
+      $this->commentDateFr = $commentDateFr;
 
     }
 
@@ -58,19 +70,29 @@ class Comment extends Manager
   }
 
 
-  public function getTitle(){
+  public function getAuthor(){
 
-  return htmlspecialchars($this->title);
+  return htmlspecialchars(ucfirst($this->author));
   }
 
-  public function getContent(){
+  public function getComment(){
 
-  return htmlspecialchars($this->content);
+  return htmlspecialchars(ucfirst($this->comment));
   }
 
-  public function getCreationDateFr(){
+  public function getReporting(){
 
-  return htmlspecialchars($this->creationDateFr);
+  return $this->reporting;
   }
+
+  public function getCommentDateFr(){
+
+  return htmlspecialchars($this->commentDateFr);
+  }
+
+  public function isSignaled(){
+    return false;
+  }
+
 
 }

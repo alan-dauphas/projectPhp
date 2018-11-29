@@ -1,37 +1,43 @@
-<?php $title = htmlspecialchars($post['title']);
+<?php $title = htmlspecialchars($post->getTitle());
 
 session_start();
 
 ob_start(); ?>
 
 
-<h1>Vu actuel du post</h1>
+<!-- <h1>Vu actuel du post</h1>
 
 <div class="news">
     <h3>
-        <?= htmlspecialchars($post['title']) ?>
-        <em>le <?= $post['creation_date_fr'] ?></em>
+        <?= $post->getTitle() ?>
+        <em>le <?= $post->getCreationDateFr(); ?></em>
     </h3>
 
     <p>
-        <?= nl2br(htmlspecialchars($post['content'])) ?>
+        <?= $post->getContent() ?>
     </p>
 </div>
-
+ -->
 
 <h1>Modifier le post</h1>
-<form action="index.php?action=modifPost&postId=<?= $post['id'] ?>&modification=confirm" method="post">
 
-  <div>
-    <label>Titre :</label><textarea name="title"><?= htmlspecialchars($post['title']) ?></textarea>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 parent-text" style="text-align : center;">
+      <div id="child-text">
+        <form action="index.php?action=modifPost&postId=<?= $_GET['postId']; ?>&modification=confirm" method="post">
+
+          <label>Titre :</label><textarea class="textareaTitle" name="title"><?= $post->getTitle() ?></textarea>
+
+          <label>Contenu :</label><textarea id="mytextarea" name="content"><?= $post->getContent() ?></textarea>
+
+          <input type="submit" value="valider">
+
+        </form>
+      </div>
+    </div>
   </div>
-  <div>
-    <label>Contenu :</label><textarea name="content"><?= nl2br(htmlspecialchars($post['content'])) ?></textarea>
-  </div>
-
-  <input type="submit" value="valider">
-
-</form>
+</div>
 
 <?php $content = ob_get_clean(); ?>
 

@@ -18,11 +18,11 @@ var_dump($_SESSION);
         <header>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-1">
+                    <div class="col-md-1 col-sm-12 ">
                       <a href="index.php">  <img id="logo" src="public/picture/img/plumeNoir.png"></a>
                     </div>
 
-                    <div class="col-md-offset-2 col-md-6 text-center">
+                    <div class="col-md-offset-2 col-md-6 col-sm-12 text-center">
                         <h1>Jean Forteroche : Billet simple pour l'Alaska</h1>
                     </div>
 
@@ -30,7 +30,7 @@ var_dump($_SESSION);
 
                       <?php
                       if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
-                        <div class="col-md-offset-1 col-md-2 text-right">
+                        <div class="col-md-offset-1 col-md-2 col-sm-12 text-right">
                           <div class="loginForm">
                               <a href="index.php?action=administration">Administration</a>
                               <a href="index.php?action=deconnection">Déconnexion</a>
@@ -40,7 +40,7 @@ var_dump($_SESSION);
                       elseif (empty($_GET['action']) && empty($_SESSION)){ ?>
 
                       <!-- Si aucune session, alors cela affiche le formulaire de connexion, uniquement sur la page d'acceuil du site -->
-                      <div class="col-md-offset-1 col-md-2">
+                      <div class="col-md-offset-1 col-md-2 col-sm-12">
 
 
                       <form action="index.php?action=connection" method="post" id="loginForm">
@@ -56,7 +56,7 @@ var_dump($_SESSION);
 
             <div class="container-fluid">
                 <div class="row">
-                  <div class="col-md-offset-4 col-md-4">
+                  <div class="col-md-offset-4 col-md-4 col-sm-12 ">
                     <nav class="navbar navbar-header navbar-inverse">
                         <ul class="nav navbar-nav">
                             <li><a href="index.php">Acceuil</a></li>
@@ -64,7 +64,8 @@ var_dump($_SESSION);
                                   <li><a href="index.php?action=registration">Inscription</a></li>
                             <?php } ?>
                             <li><a href="index.php?action=test">Page de Test</a></li>
-                            <li><a href="https://www.google.fr">Recherche Google</a></li>
+                            <li><a href="https://www.google.fr"  target="_blank">Recherche - Google</a></li>
+                            <li><a href="http://php.net/manual/fr/ref.strings.php" target="_blank">Function - Php</a></li>
                         </ul>
                     </nav>
                     </div>
@@ -92,6 +93,14 @@ var_dump($_SESSION);
         </div>
 
 
-
+        <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+           <script>
+           tinymce.init({
+             selector: '#mytextarea',
+             height: 350,
+             menubar: false,
+             toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
+           });
+           </script>
     </body>
 </html>

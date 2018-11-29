@@ -1,15 +1,11 @@
-
-<?php $title = 'Administration - Moon Blog';
-
+<?php $title = 'Administration - Mon Blog';
 session_start();
 ?>
 
-
 <?php ob_start();  ?>
 
-
-
-<?php if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
+<?php if (!empty($_SESSION))
+{ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
 
 
   <h1>Bienvenu sur la Page d'Administration</h1>
@@ -17,57 +13,48 @@ session_start();
 
   <h3>Dernier Post</h3>
 
+<?php foreach ($posts as $post):?>
+  <h3>
+      <?= $post->getTitle(); ?>
+  </h3>
 
+  <p>
+      <?= $post->getCreationDateFr(); ?>
+  </p>
 
-  <?php
-  while ($data = $postAdmin->fetch()){
-  ?>
-      <div class="news">
+  <p>
+      <?= $post->getContent() . "..."; ?>
+  </p>
 
-          <h3>
-              <?= htmlspecialchars($data['title']) ?>
-              <em>le <?= $data['creation_date_fr'] ?></em>
-          </h3>
+  <em><a href="index.php?action=post&amp;id=<?= $post->getId(); ?>">Commentaires...</a></em>
+  <input class="btn btn-warning buttonCenter" type="button" value="Modifier" onclick="javascript:location.href='index.php?action=modifPost&postId=<?= $post->getId(); ?>'">
 
-          <p>
-              <?= substr(nl2br(htmlspecialchars($data['content'])),0,250) . "..." ?>
-              <br />
-              <em><a href="index.php?action=post&amp;postId=<?= $data['id'] ?>">Commentaires...</a></em>
-          </p>
-      </div>
+  -
 
+  <input class="btn btn-danger buttonCenter" type="button" value="Supprimer" onclick="javascript:location.href='index.php?action=deletePost&id=<?= $post->getId(); ?>'">
 
-      <input class="btn btn-warning buttonCenter" type="button" value="Modifier" onclick="javascript:location.href='index.php?action=modifPost&postId=<?= $data['id']?>'"> -
-      <input class="btn btn-danger buttonCenter" type="button" value="Supprimer" onclick="javascript:location.href='index.php?action=deletePost&id=<?= $data['id']?>'">
-
-  <?php
-  }
-  ?>
-
-
+<?php endforeach; ?>
 
   <h3>Derniers Commentaires du Blog</h3>
 
-  <?php
-  while ($comment = $commentsAdmin->fetch()){
-  ?>
-      <p>Commentaire sur le Chapitre : <strong><?= htmlspecialchars($comment['post_id']) ?></strong> <br />
-        Auteur : <strong><?= htmlspecialchars(ucfirst($comment['author'])) ?></strong> <br />
-        Le <?= $comment['comment_date_fr'] ?></p>
-      <p><?= nl2br(ucfirst(strip_tags($comment['comment']))) ?></p>
-            <input class="btn btn-danger buttonCenter" type="button" value="Supprimer" onclick="javascript:location.href='index.php?action=deleteComm&id=<?= $comment['id']?>'">
+<?php foreach ($comments as $comment):?>
+  <em> <?= $comment->getAuthor(); ?></em>
 
-      ------
-  <?php
+  <p> <?= $comment->getCommentDateFr(); ?> </p>
+
+  <p> <?= $comment->getComment(); ?> </p>
+
+  <input class="btn btn-danger buttonCenter" type="button" value="Supprimer" onclick="javascript:location.href='index.php?action=deleteComm&id=<?= $comment->getId();?>'">
+
+<?php endforeach; ?>
+
+<?php
   }
-}
-else {
-  echo "vous n'etes pas connecté";
-}
-  ?>
-
-
-
+  else
+  {
+    echo "vous n'etes pas connecté";
+  }
+?>
 
 <?php $content = ob_get_clean(); ?>
 
