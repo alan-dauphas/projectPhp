@@ -5,7 +5,7 @@ session_start();
 ob_start(); ?>
 
 
-<!-- <h1>Vu actuel du post</h1>
+<h1>Vu actuel du post</h1>
 
 <div class="news">
     <h3>
@@ -17,7 +17,7 @@ ob_start(); ?>
         <?= $post->getContent() ?>
     </p>
 </div>
- -->
+
 
 <h1>Modifier le post</h1>
 

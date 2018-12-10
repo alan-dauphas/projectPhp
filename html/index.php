@@ -75,7 +75,7 @@ try
 		disconnectMember();
 	}
 	elseif ($_GET['action'] == "administration"){
-		administration_Posts_And_Comments();
+		administrationPostsAndComments();
 	}
 	elseif ($_GET['action'] == "addPost"){
 		if ($_GET['action'] == 'addPost' && isset($_GET['newPost']) && $_GET['newPost'] == 'confirm') {
@@ -105,14 +105,15 @@ try
 		}
 	}
 	elseif ($_GET['action'] == "modifPost"){
-		if (isset($_GET['postId']) && !empty($_GET['postId']))
+		if (isset($_GET['postId']) && !empty($_GET['postId']) && !isset($_GET['modification']))
 		{
 			extract($_GET);
 			post($postId);
-			if (isset($_GET['modification']) && $_GET['modification'] == "confirm")
-			{
-				updatePost($postId);
-			}
+		}
+		if (isset($_GET['modification']) && $_GET['modification'] == "confirm")
+		{
+			extract($_GET);
+			updatePost($postId);
 		}
 	}
 	elseif ($_GET['action'] == "deleteComm"){
@@ -126,12 +127,12 @@ try
 		}
 	}
 	elseif ($_GET['action'] == "reporting"){
-		if (isset($_GET['id']) && !empty($_GET['id'])){
-			extract($_GET);
-			reportingComment($id);
+		if (isset($_GET['comment_id']) && !empty($_GET['comment_id'])){
+			reportingComment($_GET['comment_id']);
 		}
 
 	}
+
 
 
 	// Ce "elseif" sert a faire des tests sur une page test.

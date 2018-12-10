@@ -64,7 +64,6 @@ class Post extends Manager
 		$this->setTitle($title);
 		$this->setContent($this->resumeContent($content));
 		$this->setCreationDateFr($creationDateFr);
-
 	}
 
 	public function resumeContent($content)

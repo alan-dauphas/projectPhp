@@ -24,7 +24,7 @@ class MemberManager extends Manager
     $PasswordCorrect = password_verify($_POST['passConnection'], $resultat['pass']);
 
     if(!$PasswordCorrect){
-      throw new Exception("Erreur : mot de passe erroné");
+      throw new Exception("Erreur : Utilisateur ou mot de passe non reconnu");
 
     }
     else{

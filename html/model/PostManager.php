@@ -38,6 +38,7 @@ class PostManager extends Manager
 
       $post = new Post();
 
+      $post->setId($row['id']);
       $post->setTitle($row['title']);
       $post->setContent($row['content']);
       $post->setCreationDateFr($row['creation_date_fr']);
@@ -87,7 +88,8 @@ class PostManager extends Manager
     $db = $this->dbConnect();
     $req = $db->prepare('DELETE FROM posts WHERE id = ?');
     $req->execute(array($postId));
+
     return $req->rowCount();
-      }
+  }
 
 }

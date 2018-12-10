@@ -7,7 +7,7 @@ class CommentManager extends Manager {
 //function for administrationView
   public function readAllComments(){
     $db = $this->dbConnect();
-    $req = $db->query('SELECT id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments ORDER BY comment_date DESC');
+    $req = $db->query('SELECT id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments ORDER BY reporting DESC, comment_date DESC'); // classement des commentaires par commentaires signaler et par date DESC
 
     // creer un tableau de posts vide qui sera remplie dans la boucle, ce tableau contiendra des objets post.
     $comments=[];
@@ -32,7 +32,7 @@ class CommentManager extends Manager {
 //function for comment each post
   public function readComments($postId){
       $db = $this->dbConnect();
-      $req = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+      $req = $db->prepare('SELECT id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
       $req->execute(array($postId));
 
       $comments=[];
@@ -44,6 +44,7 @@ class CommentManager extends Manager {
         $comment->setId($row['id']);
         $comment->setAuthor($row['author']);
         $comment->setComment($row['comment']);
+        $comment->setReporting($row['reporting']);
         $comment->setCommentDateFr($row['comment_date_fr']);
 
         $comments[] = $comment;
@@ -76,8 +77,10 @@ class CommentManager extends Manager {
 
   public function reportingCommentManager($id){
     $db = $this->dbConnect();
-    $req = $db->prepare('UPDATE comments SET reporting = true WHERE id ?');
+    $req = $db->prepare('UPDATE comments SET reporting = true WHERE id = ?');
     $req->execute(array($id));
+
+    return $req->rowCount();
   }
 
 

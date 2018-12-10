@@ -112,12 +112,10 @@ function disconnectMember()
 }
 
 // Administration
-function administration_Posts_And_Comments()
+function administrationPostsAndComments()
 {
   $postManager = new PostManager();
   $posts = $postManager->lastPostsAdministration();
-  $commentAdministration = new CommentManager();
-
 
   $commentManager = new CommentManager();
   $comments = $commentManager->readAllComments();
@@ -172,7 +170,7 @@ function updatePost($postId)
 
   if ($updatePost === false)
   {
-    throw new Exception('impossible de modifier ce commentaire !');
+    throw new Exception('impossible de modifier ce post !');
   }
   else
   {
@@ -198,7 +196,8 @@ function delComment($id)
   }
 }
 
-function reportingComment($id){
+function reportingComment($id)
+{
   $reportingCommentManager = new CommentManager();
 
   $reportingComment = $reportingCommentManager->reportingCommentManager($id);

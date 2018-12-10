@@ -71,7 +71,6 @@ class Comment extends Manager
 
 
   public function getAuthor(){
-
   return htmlspecialchars(ucfirst($this->author));
   }
 
@@ -91,8 +90,7 @@ class Comment extends Manager
   }
 
   public function isSignaled(){
-    return false;
+
+    return $this->reporting;
   }
-
-
 }

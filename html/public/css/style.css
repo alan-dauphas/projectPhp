@@ -149,3 +149,20 @@ a
   text-decoration: none;
   color:#000;
 }
+
+.comments{
+  text-align: center;
+
+}
+
+.isSignaled{
+  color: blue;
+}
+ul{
+  display: flex;
+  justify-content: space-around;
+}
+
+.alignPost, h4{
+  text-align: center;
+}

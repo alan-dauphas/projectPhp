@@ -6,7 +6,7 @@ var_dump($_SESSION);
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="refresh" content="200">
+        <meta http-equiv="refresh" content="60">
 <!-- raffraichis la page toutes les X secondes -->
         <title><?= $title ?></title>
         <link href="public/css/bootstrap.min.css" rel="stylesheet">
