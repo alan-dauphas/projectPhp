@@ -69,8 +69,8 @@ class Comment extends Manager
   return $this->id;
   }
 
-
   public function getAuthor(){
+
   return htmlspecialchars(ucfirst($this->author));
   }
 
@@ -92,5 +92,13 @@ class Comment extends Manager
   public function isSignaled(){
 
     return $this->reporting;
+  }
+
+  public function create($id, $author, $comment, $reporting, $commentDateFr){
+  $this->setId($id);
+  $this->setAuthor($author);
+  $this->setComment($comment);
+  $this->setReporting($reporting);
+  $this->setCommentDateFr($commentDateFr);
   }
 }

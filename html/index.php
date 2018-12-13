@@ -15,23 +15,6 @@ try
 			throw new Exception("Erreur : Aucun identifiant de billet envoyé");
 		}
 	}
-	elseif ($_GET['action'] == 'addComment'){
-		if (isset($_GET['id']) && $_GET['id'] > 0)
-		{
-			if (!empty($_POST['author']) && !empty($_POST['comment']))
-			{
-				newComment($_GET['id'], $_POST['author'], $_POST['comment']);
-			}
-			else
-			{
-				throw new Exception("Erreur : tous les champs ne sont pas remplis !");
-			}
-		}
-		else
-		{
-			throw new Exception("Erreur : aucun identifiant de billet envoyé");
-		}
-	}
 	elseif ($_GET['action'] == 'registration'){
 		if ($_GET['action'] == 'registration' && isset($_GET['confirmation']) && $_GET['confirmation'] == 'confirm')
 		{
@@ -65,7 +48,7 @@ try
 		}
 		else
 		{
-			registration();
+			registrationView();
 		}
 	}
 	elseif ($_GET['action'] == 'connection'){
@@ -76,6 +59,13 @@ try
 	}
 	elseif ($_GET['action'] == "administration"){
 		administrationPostsAndComments();
+	}
+	elseif ($_GET['action'] == "allPosts"){
+		administrationReadAllPosts();
+	}
+	elseif ($_GET['action'] == "lastThreePosts"){
+		administrationReadLastThreePosts();
+
 	}
 	elseif ($_GET['action'] == "addPost"){
 		if ($_GET['action'] == 'addPost' && isset($_GET['newPost']) && $_GET['newPost'] == 'confirm') {
@@ -116,6 +106,29 @@ try
 			updatePost($postId);
 		}
 	}
+	elseif ($_GET['action'] == "allComments"){
+		administrationReadAllComments();
+	}
+	elseif ($_GET['action'] == "allCommentsSignaled"){
+		administrationReadAllCommentsSignaled();
+	}
+	elseif ($_GET['action'] == 'addComment'){
+		if (isset($_GET['id']) && $_GET['id'] > 0)
+		{
+			if (!empty($_POST['author']) && !empty($_POST['comment']))
+			{
+				newComment($_GET['id'], $_POST['author'], $_POST['comment']);
+			}
+			else
+			{
+				throw new Exception("Erreur : tous les champs ne sont pas remplis !");
+			}
+		}
+		else
+		{
+			throw new Exception("Erreur : aucun identifiant de billet envoyé");
+		}
+	}
 	elseif ($_GET['action'] == "deleteComm"){
 		if (isset($_GET['id']) && !empty($_GET['id']))
 		{
@@ -133,12 +146,6 @@ try
 
 	}
 
-
-
-	// Ce "elseif" sert a faire des tests sur une page test.
-	elseif ($_GET['action'] == "test"){
-		test();
-	}
 
 
 

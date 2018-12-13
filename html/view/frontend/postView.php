@@ -1,5 +1,4 @@
 <?php $title = $post->getTitle();
-var_dump($post->getId());
 session_start();
 ?>
 
@@ -22,7 +21,7 @@ session_start();
 				<h2>Commentaires</h2>
 
 				<?php foreach ($comments as $comment):?>
-					
+
 						<p><strong><?= $comment->getAuthor(); ?></strong> le <?= $comment->getCommentDateFr(); ?></p>
 						<p><?= $comment->getComment(); ?></p>
 						<?php if($comment->isSignaled()): ?>
@@ -34,16 +33,18 @@ session_start();
 				<?php endforeach; ?>
 
 
-												-----
             <div class="row">
-							<div class="col-md-offset-2 col-md-8" >
+							<div class="col-md-offset-2 col-md-8 jumbotron" >
 							   <form action="index.php?action=addComment&amp;id=<?= $_GET['id']; ?>" method="post">
 
 										<label for="author">Auteur</label><br />
-											<input type="varchar" id="author" name="author" value="<?php if($_SESSION){echo $_SESSION['pseudo'];} ?>"/><br />
+											<input type="varchar" class="text-center" id="author" name="author" value="<?php if($_SESSION){echo $_SESSION['pseudo'];} ?>"/>
+
+										<p> - </p>
 
 										<label for="comment">Commentaire</label><br />
-											<textarea type="text" id="comment" name="comment"></textarea>
+											<textarea type="text" cols="70" rows="5" class="comment" name="comment"></textarea>
+											<br />
 
 										<input type="submit" value="Confirmer" />
 								</form>

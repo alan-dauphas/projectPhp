@@ -1,18 +1,18 @@
-[class*="col-"]
+/* [class*="col-"]
 {
-    margin-bottom: 20px;
-    border: 1px dashed grey;
-}
+  margin-bottom: 20px;
+  border: 1px dashed grey;
+} */
 
 html
 {
-    margin: 10px;
+  margin: 10px;
 }
 
 
 html body
 {
-    background-color: #CD4C47;
+  background-color: #CD4C47;
 }
 
 /* HEADER */
@@ -25,24 +25,24 @@ float: none; */
 
 header
 {
-    background-size: 100%;
-    background-image: url(../picture/background/orchid_art.jpg);
-    border-radius: 25px 25px 0 0;
+  background-size: 100%;
+  background-image: url(../picture/background/orchid_art.jpg);
+  border-radius: 25px 25px 0 0;
 }
 
 /* LOGO */
 #logo
 {
-    margin: 20px 0 0 20px;
-    width: 40px;
+  margin: 20px 0 0 20px;
+  width: 40px;
 }
 
 
 #nameSite
 {
-    margin-top: 15px;
-    text-align: center;
-    color: black;
+  margin-top: 15px;
+  text-align: center;
+  color: black;
 }
 
 .buttonDeconnexion
@@ -64,32 +64,32 @@ header
 
 #loginForm
 {
-    float: right;
-    margin-right: 5px;
+  float: right;
+  margin-right: 5px;
 }
 
 #validateButton
 {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 #validateButton:hover
 {
-    opacity: 1;
+  opacity: 1;
 }
 
 #imgPen
 {
-    background: url(../picture/background/fondEcran.jpg) no-repeat;
-    background-size: cover;
-    border-radius: 0 0 25px 25px;
-    height: 490px;
+  background: url(../picture/background/fondEcran.jpg) no-repeat;
+  background-size: cover;
+  border-radius: 0 0 25px 25px;
+  height: 490px;
 }
 
 .buttonCenter
 {
-    display: block;
-    margin : auto;
+  display: block;
+  margin : auto;
 }
 
 
@@ -108,40 +108,37 @@ header
   height: 200px;
   width: 60%;
   margin: 20px 30px 40px 30px;
-
 }
 
-
-
-h1, h2, h3
+h1, h2, h3, .comments
 {
-    text-align:center;
+text-align:center;
 }
 
 h3
 {
-    background-color:black;
-    color:white;
-    font-size:0.9em;
-    margin-bottom:0px;
+  background-color:black;
+  color:white;
+  font-size:0.9em;
+  margin-bottom:0px;
 }
 
 .news p
 {
-    background-color:#CCCCCC;
-    margin-top:0px;
+  background-color:#CCCCCC;
+  margin-top:0px;
 }
 
 .news
 {
-    width:70%;
-    margin:auto;
+  width:70%;
+  margin:auto;
 }
 
 a
 {
-    text-decoration: none;
-    color: blue;
+  text-decoration: none;
+  color: blue;
 }
 
 .no_underline, .no_underline:hover
@@ -150,15 +147,10 @@ a
   color:#000;
 }
 
-.comments{
-  text-align: center;
-
-}
-
 .isSignaled{
   color: blue;
 }
-ul{
+ul, #lienMenu{
   display: flex;
   justify-content: space-around;
 }

@@ -1,7 +1,3 @@
-<?php
-var_dump($_SESSION);
-
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,11 +14,11 @@ var_dump($_SESSION);
         <header>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-1 col-sm-12 ">
+                    <div class="col-md-1 col-sm-2 text-center">
                       <a href="index.php">  <img id="logo" src="public/picture/img/plumeNoir.png"></a>
                     </div>
 
-                    <div class="col-md-offset-2 col-md-6 col-sm-12 text-center">
+                    <div class="col-md-offset-2 col-md-6 col-sm-10 text-center">
                         <h1>Jean Forteroche : Billet simple pour l'Alaska</h1>
                     </div>
 
@@ -30,9 +26,8 @@ var_dump($_SESSION);
 
                       <?php
                       if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
-                        <div class="col-md-offset-1 col-md-2 col-sm-12 text-right">
+                        <div class="col-md-offset-2 col-md-1 col-sm-12 text-center">
                           <div class="loginForm">
-                              <a href="index.php?action=administration">Administration</a>
                               <a href="index.php?action=deconnection">Déconnexion</a>
                           </div>
                         </div>
@@ -56,15 +51,18 @@ var_dump($_SESSION);
 
             <div class="container-fluid">
                 <div class="row">
-                  <div class="col-md-offset-4 col-md-4 col-sm-12 ">
+                  <div class="col-md-offset-3 col-md-6 col-sm-12" id="lienMenu">
                     <nav class="navbar navbar-header navbar-inverse">
                         <ul class="nav navbar-nav">
                             <li><a href="index.php">Acceuil</a></li>
                             <?php if (empty($_SESSION)){ ?>
                                   <li><a href="index.php?action=registration">Inscription</a></li>
+                            <?php } else { ?>
+                              <li><a href="index.php?action=administration">Administration</a></li>
                             <?php } ?>
+
                             <li><a href="index.php?action=test">Page de Test</a></li>
-                            <li><a href="https://www.google.fr"  target="_blank">Recherche - Google</a></li>
+                            <li><a href="https://www.google.fr" target="_blank">Recherche - Google</a></li>
                             <li><a href="http://php.net/manual/fr/ref.strings.php" target="_blank">Function - Php</a></li>
                         </ul>
                     </nav>
@@ -85,7 +83,7 @@ var_dump($_SESSION);
 
             <div class="row">
                 <section>
-                    <div class="col-md-offset-2 col-md-8">
+                    <div class="col-md-offset-2 col-md-8 col-sm-12 text-center">
                         <?= $content ?>
                     </div>
                 </section>

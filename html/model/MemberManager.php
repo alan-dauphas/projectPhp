@@ -31,6 +31,7 @@ class MemberManager extends Manager
       session_start();
       $_SESSION['id'] = $resultat['id'];
       $_SESSION['pseudo'] = $pseudonyme;
+
     }
 
 
