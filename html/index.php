@@ -85,7 +85,7 @@ try
 		}
 	}
 	elseif ($_GET['action'] == "deletePost"){
-		if (isset($_GET['id']) && !empty($_GET['id'])) {
+		if (isset($_GET['id']) && !empty($_GET['id']) && $_SESSION['admin'] == "1") {
 			extract($_GET);
 			delPost($id);
 		}
@@ -130,12 +130,16 @@ try
 		}
 	}
 	elseif ($_GET['action'] == "deleteComm"){
-		if (isset($_GET['id']) && !empty($_GET['id']))
+		if (isset($_GET['id']) && !empty($_GET['id']) && $_SESSION['admin'] == 1)
 		{
+			var_dump($_SESSION['admin']);
+			echo "jaime les nuggets";
+			die;
 			extract($_GET);
 			delComment($id);
 		}
 		else {
+
 			throw new Exception("Erreur : impossible de supprimer ce commentaire !");
 		}
 	}

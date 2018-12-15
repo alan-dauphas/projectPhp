@@ -7,7 +7,7 @@ class MemberManager extends Manager
   {
     $db = $this->dbConnect();
     $passHash = password_hash($pass, PASSWORD_DEFAULT);
-    $members = $db->prepare('INSERT INTO members(name, pseudo, pass, mail, registration_date) VALUES(?, ?, ?, ?, NOW())');
+    $members = $db->prepare('INSERT INTO members(name, pseudo, pass, mail, registration_date, admin) VALUES(?, ?, ?, ?, NOW(), "0")');
     $newMembers = $members->execute(array($name, $pseudo, $passHash, $email));
 
     return $newMembers;
@@ -17,7 +17,7 @@ class MemberManager extends Manager
   {
 
     $db = $this->dbConnect();
-    $connection = $db->prepare('SELECT id, pass FROM members WHERE pseudo = :pseudo');
+    $connection = $db->prepare('SELECT id, pass, admin FROM members WHERE pseudo = :pseudo');
     $connection->execute(array('pseudo' => $pseudonyme));
     $resultat = $connection->fetch();
 
@@ -31,6 +31,8 @@ class MemberManager extends Manager
       session_start();
       $_SESSION['id'] = $resultat['id'];
       $_SESSION['pseudo'] = $pseudonyme;
+      $_SESSION['admin'] = $resultat['admin'];
+
 
     }
 

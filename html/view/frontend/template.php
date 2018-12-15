@@ -1,8 +1,9 @@
+<?php var_dump($_SESSION); ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="refresh" content="60">
+        <meta http-equiv="refresh" content="100">
 <!-- raffraichis la page toutes les X secondes -->
         <title><?= $title ?></title>
         <link href="public/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +29,8 @@
                       if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
                         <div class="col-md-offset-2 col-md-1 col-sm-12 text-center">
                           <div class="loginForm">
-                              <a href="index.php?action=deconnection">Déconnexion</a>
+                              <a href="index.php?action=deconnection">Déconnexion</a><br />
+                              Bienvenu <?= $_SESSION['pseudo'] . $_SESSION['admin'] ?>
                           </div>
                         </div>
                       <?php }
@@ -60,8 +62,6 @@
                             <?php } else { ?>
                               <li><a href="index.php?action=administration">Administration</a></li>
                             <?php } ?>
-
-                            <li><a href="index.php?action=test">Page de Test</a></li>
                             <li><a href="https://www.google.fr" target="_blank">Recherche - Google</a></li>
                             <li><a href="http://php.net/manual/fr/ref.strings.php" target="_blank">Function - Php</a></li>
                         </ul>
