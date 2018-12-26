@@ -10,7 +10,7 @@ function listPosts(){
     $postManager = new PostManager();
     $posts = $postManager->readAllPosts();
 
-    require('/view/frontend/listPostsView.php');
+    require('view/frontend/listPostsView.php');
 }
 
 //demande l'affichage d'un post
@@ -18,7 +18,7 @@ function post($postId){
   $postManager = new PostManager();
   $post = $postManager->readPost($postId);
 
-  require('/view/frontend/modifPostView.php');
+  require('view/frontend/updatePostView.php');
 }
 
 //demande l'affichage d'un post et ses commentaires
@@ -29,7 +29,7 @@ function postAndComment(){
   $commentManager = new CommentManager();
   $comments = $commentManager->readComments($_GET['id']);
 
-  require('/view/frontend/postView.php');
+  require('view/frontend/postView.php');
 }
 
 // Partie Membres, Connexion, Déconnexion,
@@ -75,7 +75,7 @@ function disconnectMember(){
 }
 
 function registrationView(){
-  require('/view/frontend/registrationView.php');
+  require('view/frontend/registrationView.php');
 }
 
 // Administration
@@ -86,14 +86,14 @@ function administrationPostsAndComments(){
   $commentManager = new CommentManager();
   $comments = $commentManager->readAllComments();
 
-  require('/view/frontend/administrationView.php');
+  require('view/frontend/administrationView.php');
 }
 
 function administrationReadAllPosts(){
   $postManager = new PostManager();
   $posts = $postManager->readAllPosts();
 
-  require('/view/frontend/allPostsView.php');
+  require('view/frontend/allPostsView.php');
 
 }
 
@@ -101,7 +101,7 @@ function administrationReadLastThreePosts(){
   $postManager = new PostManager();
   $posts = $postManager->lastPostsAdministration();
 
-  require('/view/frontend/lastThreePostsView.php');
+  require('view/frontend/lastThreePostsView.php');
 
 }
 
@@ -109,19 +109,19 @@ function administrationReadAllComments(){
   $commentManager = new CommentManager();
   $comments = $commentManager->readAllComments();
 
-  require('/view/frontend/allCommentsView.php');
+  require('view/frontend/allCommentsView.php');
 }
 
 function administrationReadAllCommentsSignaled(){
   $commentManager = new CommentManager();
   $comments = $commentManager->readAllCommentsSignaled();
 
-  require('/view/frontend/commentsSignaledView.php');
+  require('view/frontend/commentsSignaledView.php');
 
 }
 
 function newPostView(){
-  require('/view/frontend/addPostView.php');
+  require('view/frontend/addPostView.php');
 }
 
 function addNewPost($title, $content){
@@ -179,8 +179,6 @@ function newComment($postId, $author, $comment){
   $newComments = $commentManager->addComment($postId, $author, $comment);
 
   if ($newComments === false) {
-    var_dump($newComments);
-
     throw new Exception('Impossible d\'ajouter le commentaire !');
   }
   else

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 15 déc. 2018 à 15:38
+-- Généré le :  mer. 26 déc. 2018 à 09:37
 -- Version du serveur :  5.7.21
 -- Version de PHP :  5.6.35
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `comment_date` datetime NOT NULL,
   `reporting` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `comments`
@@ -49,18 +49,7 @@ INSERT INTO `comments` (`id`, `post_id`, `author`, `comment`, `comment_date`, `r
 (3, 2, 'Greg', 'Accroche-toi tu vas y arriver ', '2018-10-18 17:30:11', NULL),
 (4, 2, 'tatjana', 'Ta vu c\'est pas mal comme langage', '2018-10-24 12:25:34', NULL),
 (5, 2, 'Inconnu', 'sa veut dire quoi php ?', '2018-10-24 12:27:07', NULL),
-(48, 34, 'houker', 'Encore un chapitre inutile', '2018-12-11 14:44:30', 1),
-(49, 34, 'houker', 'bliblablou', '2018-12-11 14:44:36', NULL),
-(61, 41, 'saloute', 'khbjyluujiu ko', '2018-12-15 12:06:57', NULL),
-(22, 6, 'Pierre', 'Que dit tu d\'ajouter la possibilité d\'injecter un nouveau chapitre de ton blog directement sur grace a une page administrateur ?', '2018-10-25 18:28:05', NULL),
-(64, 41, 'fzfzfzfz', 'fzfzfzfz', '2018-12-15 12:07:15', NULL),
-(50, 41, 'houker', 'ttttttttttt', '2018-12-15 11:28:01', NULL),
-(51, 41, 'houker', 'eeeeeeeeeeee', '2018-12-15 11:28:04', NULL),
-(52, 41, 'houker', 'zzzzzzzzzzzzz', '2018-12-15 11:28:07', NULL),
-(62, 41, 'ffffffffffff', 'fffffffffffffff', '2018-12-15 12:07:01', NULL),
-(63, 41, 'zfzafzfz', 'fzfzfzfzfz', '2018-12-15 12:07:10', NULL),
-(57, 41, 'Jean', 'aaaaaaaaaaaaaa', '2018-12-15 11:59:07', NULL),
-(46, 31, 'houker', 'il teste le signalement des commentaires je pense', '2018-12-06 11:52:44', NULL);
+(6, 6, 'Pierre', 'Que dit tu d\'ajouter la possibilité d\'injecter un nouveau chapitre de ton blog directement sur grace a une page administrateur ?', '2018-10-25 18:28:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -78,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `members` (
   `registration_date` datetime NOT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `members`
@@ -86,8 +75,7 @@ CREATE TABLE IF NOT EXISTS `members` (
 
 INSERT INTO `members` (`id`, `name`, `pseudo`, `pass`, `mail`, `registration_date`, `admin`) VALUES
 (1, 'alan', 'houker', '$2y$10$YoUmB/X9hk7YHNcLuZpnbe81jO61yPxJCEQIWj.Eo5GsJVuWEN.JK', 'alan.dauphas@me.com', '2018-10-30 15:41:32', 1),
-(20, 'Forteroche', 'Jean', '$2y$10$J19U0/6/hh53XdAqhRegnOy/7m2j7LLvnb29RToMunU5iRGxu.wE2', 'Jean.forteroche@gmail.com', '2018-12-15 11:58:39', NULL),
-(21, 'pierre', 'pierre', '$2y$10$WkGzuZsHyACU1ZqQeSQP9Oe4P/ySvlWpVhxVj7M/hf1US5WVcZC82', 'pierre@gmail.com', '2018-12-15 12:06:37', 0);
+(2, 'Jean', 'Jean', '$2y$10$SFJS0Su1xFjLLQg1L.Bd6u5KP845Qz7U8JC49s0HDZXe30rnWQHku', 'Jean@Forteroche.com', '2018-12-18 12:21:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -102,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `content` text NOT NULL,
   `creation_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `posts`
@@ -114,8 +102,7 @@ INSERT INTO `posts` (`id`, `title`, `content`, `creation_date`) VALUES
 (3, 'Chapitre 3', 'Maintenant que j\'ai les bases en Php, place au MVC.', '2018-10-25 18:19:12'),
 (4, 'Chapitre 4', 'MVC c\'est maintenant Ok', '2018-10-25 18:25:20'),
 (5, 'Chapitre 5', 'Place a la POO (mise en forme objet)', '2018-10-25 18:25:45'),
-(6, 'Chapitre 6', 'Une fois que j\'aurais mis le site en orientée objet, je penserais à ajouter des fonctionnalité. Si vous avez des suggestion je suis preneur.', '2018-10-25 18:27:01'),
-(41, 'rrrrrrrrrrrrrrrrrrrr', '<p>rrrrrrrrrrrrrr</p>', '2018-12-15 11:26:13');
+(6, 'Chapitre 6', 'Une fois que j\'aurais mis le site en orientée objet, je penserais à ajouter des fonctionnalité. Si vous avez des suggestion je suis preneur.', '2018-10-25 18:27:01');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

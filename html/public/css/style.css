@@ -1,9 +1,3 @@
-/* [class*="col-"]
-{
-  margin-bottom: 20px;
-  border: 1px dashed grey;
-} */
-
 html
 {
   margin: 10px;
@@ -16,12 +10,6 @@ html body
 }
 
 /* HEADER */
-col-sm-12
-{
-/* margin: auto;
-text-align: center;
-float: none; */
-}
 
 header
 {
@@ -117,16 +105,25 @@ text-align:center;
 
 h3
 {
-  background-color:black;
+  background-color:#8a8a8a;
+  padding: 3%;
   color:white;
   font-size:0.9em;
   margin-bottom:0px;
+  border-radius: 10px 10px 0 0;
 }
 
-.news p
+.creationDateFr {
+  background-color:#CCCCCC;
+  border-radius: 0 0 10px 10px;
+}
+
+.content
 {
   background-color:#CCCCCC;
-  margin-top:0px;
+  border-radius: 10px;
+  padding: 1%;
+
 }
 
 .news
@@ -150,6 +147,7 @@ a
 .isSignaled{
   color: blue;
 }
+
 ul, #lienMenu{
   display: flex;
   justify-content: space-around;
@@ -157,4 +155,28 @@ ul, #lienMenu{
 
 .alignPost, h4{
   text-align: center;
+}
+
+label
+{
+	display: block;
+	width: 150px;
+	float: left;
+}
+
+input
+{
+  border-radius: 5px;
+}
+
+.formInscription
+{
+  padding-bottom: 4px;
+}
+
+hr
+{
+  align: center;
+  size: 2;
+  width: 50%;
 }

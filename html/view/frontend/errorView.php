@@ -1,8 +1,6 @@
-<?php
-$title = "Page Erreur";
-session_start();
-ob_start();
-?>
+<?php $title = "Page Erreur"; ?>
+
+<?php ob_start(); ?>
 <div style="text-align:center">
   <img src="public/picture/error.jpg" alt="image d'erreur">
 </div>
@@ -12,5 +10,5 @@ ob_start();
 <?php
 $content = ob_get_clean();
 
-require('/view/frontend/template.php');
+require('view/frontend/template.php');
 ?>

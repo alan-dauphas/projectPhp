@@ -7,7 +7,7 @@ class MemberManager extends Manager
   {
     $db = $this->dbConnect();
     $passHash = password_hash($pass, PASSWORD_DEFAULT);
-    $members = $db->prepare('INSERT INTO members(name, pseudo, pass, mail, registration_date, admin) VALUES(?, ?, ?, ?, NOW(), "0")');
+    $members = $db->prepare('INSERT INTO members(name, pseudo, pass, mail, registration_date) VALUES(?, ?, ?, ?, NOW())');
     $newMembers = $members->execute(array($name, $pseudo, $passHash, $email));
 
     return $newMembers;
@@ -27,7 +27,7 @@ class MemberManager extends Manager
       throw new Exception("Erreur : Utilisateur ou mot de passe non reconnu");
 
     }
-    else{
+    else {
       session_start();
       $_SESSION['id'] = $resultat['id'];
       $_SESSION['pseudo'] = $pseudonyme;

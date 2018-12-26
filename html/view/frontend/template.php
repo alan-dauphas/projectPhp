@@ -1,4 +1,3 @@
-<?php var_dump($_SESSION); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +29,7 @@
                         <div class="col-md-offset-2 col-md-1 col-sm-12 text-center">
                           <div class="loginForm">
                               <a href="index.php?action=deconnection">Déconnexion</a><br />
-                              Bienvenu <?= $_SESSION['pseudo'] . $_SESSION['admin'] ?>
+                              Bienvenu <?= $_SESSION['pseudo']?>
                           </div>
                         </div>
                       <?php }
@@ -71,25 +70,25 @@
             </div>
         </header>
 
+        <section>
+            <div class="container-fluid">
+                <div class="row">
+                    <section id="imgPen">
+                        <div class="col-md-offset-2 col-md-8 titleSecondary">
+                            <h2>"Billet simple pour l'Alaska"<br />écrit par :<br />Jean Forteroche</h2>
+                        </div>
+                    </section>
+                </div>
 
-        <div class="container-fluid">
-            <div class="row">
-                <section id="imgPen">
-                    <div class="col-md-offset-2 col-md-8 titleSecondary">
-                        <h2>"Billet simple pour l'Alaska"<br />écrit par :<br />Jean Forteroche</h2>
-                    </div>
-                </section>
+                <div class="row">
+                    <section>
+                        <div class="col-md-offset-2 col-md-8 col-sm-12 text-center">
+                            <?= $content ?>
+                        </div>
+                    </section>
+                </div>
             </div>
-
-            <div class="row">
-                <section>
-                    <div class="col-md-offset-2 col-md-8 col-sm-12 text-center">
-                        <?= $content ?>
-                    </div>
-                </section>
-            </div>
-        </div>
-
+        </section>
 
         <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
            <script>

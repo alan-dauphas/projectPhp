@@ -76,7 +76,7 @@ class PostManager extends Manager
   public function updatePostManager($postId){
     $db = $this->dbConnect();
     $req = $db->prepare('UPDATE posts SET title = ?, content = ? WHERE id =  ?' );
-    $req->execute(array($_POST['title'], $_POST['content'], $postId));
+    return $req->execute(array($_POST['title'], $_POST['content'], $postId));
   }
 
   //supprimer un post

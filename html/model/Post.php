@@ -10,6 +10,8 @@ class Post extends Manager
 
 	private $content;
 
+	private $resumeContent;
+
 	private $creationDateFr;
 
 	private $row;
@@ -30,6 +32,7 @@ class Post extends Manager
 	{
 		$this->content = $content;
 	}
+
 
 	public function setCreationDateFr($creationDateFr)
 	{
@@ -62,13 +65,14 @@ class Post extends Manager
 	{
 		$this->setId($id);
 		$this->setTitle($title);
-		$this->setContent($this->resumeContent($content));
+		$this->setContent($content);
 		$this->setCreationDateFr($creationDateFr);
 	}
 
-	public function resumeContent($content)
+	public function getResumeContent()
 	{
-		return substr($content , 0 , 80);
+		return substr($this->content , 0 , 80);
 	}
+
 
 }

@@ -1,11 +1,8 @@
-<?php $title = 'Administration - Mon Blog';
-session_start();
-?>
+<?php $title = 'Administration - Mon Blog'; ?>
 
-<?php ob_start();  ?>
+<?php ob_start(); ?>
 
-<?php if (!empty($_SESSION))
-{ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
+<?php if (!empty($_SESSION) && $_SESSION['admin']):?>
 
   <h1>Bienvenu sur la Page d'Administration</h1>
   <div class="col-md-12 alignMenu">
@@ -25,16 +22,14 @@ session_start();
     </ul>
   </div>
 
-  <input class="buttonCenter" type="button" value="Ajouter un Post" onclick="javascript:location.href='index.php?action=addPost'">
+  <?php if ($_SESSION['admin']): ?>
+    <input class="buttonCenter" type="button" value="Ajouter un Post" onclick="javascript:location.href='index.php?action=addPost'">
+  <?php endif; ?>
 
 <?php
-  }
-  else
-  {
-    echo "vous n'etes pas connecté";
-  }
+endif ;
 ?>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('/view/frontend/template.php'); ?>
+<?php require('view/frontend/template.php'); ?>

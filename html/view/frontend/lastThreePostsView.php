@@ -1,8 +1,6 @@
-<?php $title = 'Last Three Posts';
-session_start();
-?>
+<?php $title = 'Last Three Posts'; ?>
 
-<?php ob_start();  ?>
+<?php ob_start(); ?>
 
 <?php if (!empty($_SESSION))
 { ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
@@ -13,25 +11,25 @@ session_start();
     <h3>
         <?= $post->getTitle(); ?>
     </h3>
-    <div class="alignPost">
-      <p>
-          <?= $post->getCreationDateFr(); ?>
-      </p>
+    <div class="creationDateFr">
+      <p>Le <?= $post->getCreationDateFr(); ?> </p>
+    </div>
+      <div class="content">
+                <p><?= $post->getResumeContent() . "..."; ?></p>
+      </div>
 
-      <p>
-          <?= $post->getContent() . "..."; ?>
-      </p>
       <p>
         <em><a href="index.php?action=post&amp;id=<?= $post->getId(); ?>">Commentaires...</a></em>
       </p>
-    </div>
 
-    <input class="btn btn-warning buttonCenter" type="button" value="Modifier" onclick="javascript:location.href='index.php?action=modifPost&postId=<?= $post->getId(); ?>'">
+
+    <input class="btn btn-warning buttonCenter" type="button" value="Modifier" onclick="javascript:location.href='index.php?action=updatePost&postId=<?= $post->getId(); ?>'">
 
     -
 
     <input class="btn btn-danger buttonCenter" type="button" value="Supprimer" onclick="javascript:location.href='index.php?action=deletePost&id=<?= $post->getId(); ?>'">
 
+<hr>
   <?php endforeach; ?>
 
 
@@ -46,4 +44,4 @@ session_start();
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('/view/frontend/template.php'); ?>
+<?php require('view/frontend/template.php'); ?>
