@@ -22,31 +22,26 @@
                         <h1>Jean Forteroche : Billet simple pour l'Alaska</h1>
                     </div>
 
-
-
-                      <?php
-                      if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
-                        <div class="col-md-offset-2 col-md-1 col-sm-12 text-center">
-                          <div class="loginForm">
-                              <a href="index.php?action=deconnection">Déconnexion</a><br />
-                              Bienvenu <?= $_SESSION['pseudo']?>
-                          </div>
+                    <?php if (!empty($_SESSION)){ ?> <!-- Si une session est ouvert, alors cela affiche le lien de déconnexion -->
+                      <div class="col-md-offset-2 col-md-1 col-sm-12 text-center">
+                        <div class="loginForm">
+                            <a href="index.php?action=deconnection">Déconnexion</a><br />
+                            Bienvenu <?= $_SESSION['pseudo']?>
                         </div>
-                      <?php }
-                      elseif (empty($_GET['action']) && empty($_SESSION)){ ?>
-
-                      <!-- Si aucune session, alors cela affiche le formulaire de connexion, uniquement sur la page d'acceuil du site -->
-                      <div class="col-md-offset-1 col-md-2 col-sm-12">
-
-
-                      <form action="index.php?action=connection" method="post" id="loginForm">
-                      <label>Pseudo</label> :<br /><input type="text" name="pseudonyme" size="15" />
-                      <br />
-                      <label>Mot de passe</label> :<br /><input type="password" name="passConnection" size="15" />
-                      <input id="validateButton" type="submit" />
-                      </form>
-                      <?php } ?>
-                    </div>
+                      </div>
+                    <?php } ?>
+                    <?php if (empty($_GET['action']) && empty($_SESSION)){ ?>
+                    <!-- Si aucune session, alors cela affiche le formulaire de connexion, uniquement sur la page d'acceuil du site -->
+                      <div class="col-md-offset-2 col-md-1 col-sm-12">
+                        <form action="index.php?action=connection" method="post" id="loginForm">
+                          <label>Pseudo :</label><input type="text" name="pseudonyme" size="15" />
+                          <br />
+                          <label>Mot de passe :</label><input type="password" name="passConnection" size="15" />
+                          <br /><br />
+                          <input id="validateButton" type="submit" value="Connexion"/>
+                        </form>
+                      </div>
+                    <?php } ?>
                 </div>
             </div>
 
@@ -57,15 +52,15 @@
                         <ul class="nav navbar-nav">
                             <li><a href="index.php">Acceuil</a></li>
                             <?php if (empty($_SESSION)){ ?>
-                                  <li><a href="index.php?action=registration">Inscription</a></li>
+                                    <li><a href="index.php?action=registration">Inscription</a></li>
                             <?php } else { ?>
-                              <li><a href="index.php?action=administration">Administration</a></li>
+                                    <li><a href="index.php?action=administration">Administration</a></li>
+                                    <li><a href="index.php?action=addPost">Ajouter un Post</a></li>
                             <?php } ?>
-                            <li><a href="https://www.google.fr" target="_blank">Recherche - Google</a></li>
-                            <li><a href="http://php.net/manual/fr/ref.strings.php" target="_blank">Function - Php</a></li>
+
                         </ul>
                     </nav>
-                    </div>
+                  </div>
                 </div>
             </div>
         </header>
@@ -92,12 +87,12 @@
 
         <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
            <script>
-           tinymce.init({
-             selector: '#mytextarea',
-             height: 350,
-             menubar: false,
-             toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
-           });
+             tinymce.init({
+               selector: '#mytextarea',
+               height: 350,
+               menubar: false,
+               toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
+             });
            </script>
     </body>
 </html>

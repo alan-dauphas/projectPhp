@@ -9,13 +9,13 @@ try {
 	if (empty($_SERVER['QUERY_STRING'])){
 		return listPosts();
 	}
-	elseif ($_GET['action'] == 'post'){
+	elseif ($_GET['action'] === 'post'){
 		if (isset($_GET['id']) && $_GET['id'] > 0){
-			return postAndComment();
+			return postAndComment($_GET['id']);
 		}
 			throw new Exception("Erreur : Aucun identifiant de billet envoyé");
 	}
-	elseif ($_GET['action'] == 'registration'){
+	elseif ($_GET['action'] === 'registration'){
 		if ($_GET['action'] == 'registration' && isset($_GET['confirmation']) && $_GET['confirmation'] == 'confirm'){
 			if (!empty($_POST['name']) && !empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty($_POST['pass_confirm']) && !empty($_POST['email'])){
 				extract($_POST); //permet de ne pas remettre "$_POST" a chaque fois devant les différentes variables
@@ -37,22 +37,22 @@ try {
 		}
 		return registrationView();
 	}
-	elseif ($_GET['action'] == 'connection'){
+	elseif ($_GET['action'] === 'connection'){
 		return connectionMember($_POST['pseudonyme']);
 	}
-	elseif ($_GET['action'] == "deconnection"){
+	elseif ($_GET['action'] === "deconnection"){
 	 	return disconnectMember();
 	}
-	elseif ($_GET['action'] == "administration" && ($_SESSION['admin'])){
+	elseif ($_GET['action'] === "administration" && ($_SESSION['admin'] || $_SESSION['admin'] == 0)){
 	 	return	administrationPostsAndComments();
 	}
-	elseif ($_GET['action'] == "allPosts" && ($_SESSION['admin'])){
+	elseif ($_GET['action'] === "allPosts" && ($_SESSION['admin'] || $_SESSION['admin'] == 0)){
 		return administrationReadAllPosts();
 	}
-	elseif ($_GET['action'] == "lastThreePosts" && ($_SESSION['admin'])){
+	elseif ($_GET['action'] === "lastThreePosts" && ($_SESSION['admin'] || $_SESSION['admin'] == 0)){
 	 return	administrationReadLastThreePosts();
 	}
-	elseif ($_GET['action'] == "addPost" && ($_SESSION['admin'])){
+	elseif ($_GET['action'] === "addPost" && ($_SESSION['admin'] || $_SESSION['admin'] == 0)){
 		if ($_GET['action'] == 'addPost' && isset($_GET['newPost']) && $_GET['newPost'] == 'confirm'){
 			if (isset($_POST['title']) && !empty($_POST['title']) && isset($_POST['content']) && !empty($_POST['content']) ){
 				extract($_POST);
@@ -64,14 +64,14 @@ try {
 			return newPostView();
 		}
 	}
-	elseif ($_GET['action'] == "deletePost" && ($_SESSION['admin'])){
-		if (isset($_GET['id']) && !empty($_GET['id']) && $_SESSION['admin']){
+	elseif ($_GET['action'] === "deletePost" && ($_SESSION['admin'])){
+		if (isset($_GET['id']) && !empty($_GET['id'])){
 			extract($_GET);
 			return delPost($id);
 		}
 		throw new Exception("Erreur : impossible de supprimer ce post !");
 	}
-	elseif ($_GET['action'] == "updatePost" && ($_SESSION['admin'])){
+	elseif ($_GET['action'] === "updatePost" && isset($_SESSION['admin']) && ($_SESSION['admin'] || $_SESSION['admin'] == 0)){
 		if (isset($_GET['postId']) && !empty($_GET['postId']) && !isset($_GET['modification'])){
 			extract($_GET);
 			return post($postId);
@@ -81,13 +81,13 @@ try {
 			return updatePost($postId);
 		}
 	}
-	elseif ($_GET['action'] == "allComments"){
+	elseif ($_GET['action'] === "allComments"){
 		return administrationReadAllComments();
 	}
-	elseif ($_GET['action'] == "allCommentsSignaled"){
+	elseif ($_GET['action'] === "allCommentsSignaled"){
 		return administrationReadAllCommentsSignaled();
 	}
-	elseif ($_GET['action'] == 'addComment'){
+	elseif ($_GET['action'] === 'addComment'){
 		if (isset($_GET['id']) && $_GET['id'] > 0){
 			if ((isset($_POST['author']) && strlen(trim($_POST['author'])) > 0) && (isset($_POST['comment']) && strlen(trim($_POST['comment'])) > 0)){
 				//Ses conditions permettent de ne pas avoir l'injection d'espace dans la base de données (commentaire qui serait remplis d'espace).
@@ -97,7 +97,7 @@ try {
 		}
 			throw new Exception("Erreur : aucun identifiant de billet reçu");
 	}
-	elseif ($_GET['action'] == "deleteComm" && ($_SESSION['admin'])){
+	elseif ($_GET['action'] === "deleteComm" && ($_SESSION['admin'])){
 		if (isset($_GET['id']) && !empty($_GET['id']) && ($_SESSION['admin'])){
 			extract($_GET);
 			return delComment($id);
@@ -105,7 +105,7 @@ try {
 			throw new Exception("Erreur : impossible de supprimer ce commentaire !");
 
 	}
-	elseif ($_GET['action'] == "reporting"){
+	elseif ($_GET['action'] === "reporting"){
 		if (isset($_GET['comment_id']) && !empty($_GET['comment_id'])){
 			reportingComment($_GET['comment_id']);
 		}

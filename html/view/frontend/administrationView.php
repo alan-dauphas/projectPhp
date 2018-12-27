@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<?php if (!empty($_SESSION) && $_SESSION['admin']):?>
+<?php if (!empty($_SESSION) && ($_SESSION['admin'] || $_SESSION['admin'] == 0)):?>
 
   <h1>Bienvenu sur la Page d'Administration</h1>
   <div class="col-md-12 alignMenu">

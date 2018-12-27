@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<?php if($_SESSION['admin']): ?>
+<?php if(isset($_SESSION) && ($_SESSION['admin'] || $_SESSION['admin'] == 0)): ?>
 
 <h1>Vu actuel du post</h1>
 
@@ -26,13 +26,13 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-offset-1 col-md-10 parent-text" style="text-align : center;">
+    <div class="col-md-offset-1 col-md-10" style="text-align : center;">
       <div id="child-text">
         <form action="index.php?action=updatePost&postId=<?= $_GET['postId']; ?>&modification=confirm" method="post">
 
-          <label>Titre :</label><textarea class="textareaTitle" name="title"><?= $post->getTitle() ?></textarea><br/>
+          <textarea class="textareaTitle" name="title"><?= $post->getTitle() ?></textarea><br/>
 
-          <label>Contenu :</label><textarea id="mytextarea" name="content"><?= $post->getContent() ?></textarea>
+          <textarea id="mytextarea" name="content"><?= $post->getContent() ?></textarea>
 
           <input type="submit" value="valider">
 
@@ -42,7 +42,6 @@
   </div>
 </div>
 
-<?php else: echo "accés refusé" ?>
 
 <?php endif; ?>
 

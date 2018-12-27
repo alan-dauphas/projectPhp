@@ -27,7 +27,9 @@
 
     -
 
-    <input class="btn btn-danger buttonCenter" type="button" value="Supprimer" onclick="javascript:location.href='index.php?action=deletePost&id=<?= $post->getId(); ?>'">
+    <?php if($_SESSION['admin']): ?>
+        <input class="btn btn-danger buttonCenter" type="button" value="Supprimer" onclick="javascript:location.href='index.php?action=deletePost&id=<?= $post->getId(); ?>'">
+    <?php endif; ?>
 
 <hr>
   <?php endforeach; ?>

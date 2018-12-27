@@ -22,12 +22,13 @@ function post($postId){
 }
 
 //demande l'affichage d'un post et ses commentaires
-function postAndComment(){
+function postAndComment($postId){
+
   $postManager = new PostManager();
-  $post = $postManager->readPost($_GET['id']);
+  $post = $postManager->readPost($postId);
 
   $commentManager = new CommentManager();
-  $comments = $commentManager->readComments($_GET['id']);
+  $comments = $commentManager->readComments($postId);
 
   require('view/frontend/postView.php');
 }

@@ -1,46 +1,39 @@
-html
-{
+html{
   margin: 10px;
 }
 
 
-html body
-{
+html body{
   background-color: #CD4C47;
 }
 
 /* HEADER */
 
-header
-{
+header{
   background-size: 100%;
   background-image: url(../picture/background/orchid_art.jpg);
   border-radius: 25px 25px 0 0;
 }
 
 /* LOGO */
-#logo
-{
+#logo{
   margin: 20px 0 0 20px;
   width: 40px;
 }
 
 
-#nameSite
-{
+#nameSite{
   margin-top: 15px;
   text-align: center;
   color: black;
 }
 
-.buttonDeconnexion
-{
+.buttonDeconnexion{
   text-align: right;
 }
 
 /*Navigation bar*/
-.navbar
-{
+.navbar{
   background-color: transparent;
   border-color: transparent;
   display: flex;
@@ -50,32 +43,27 @@ header
 
 /* Formulaire connexion */
 
-#loginForm
-{
+#loginForm{
   float: right;
   margin-right: 5px;
 }
 
-#validateButton
-{
+#validateButton{
   opacity: 0.6;
 }
 
-#validateButton:hover
-{
+#validateButton:hover{
   opacity: 1;
 }
 
-#imgPen
-{
+#imgPen{
   background: url(../picture/background/fondEcran.jpg) no-repeat;
   background-size: cover;
   border-radius: 0 0 25px 25px;
   height: 490px;
 }
 
-.buttonCenter
-{
+.buttonCenter{
   display: block;
   margin : auto;
 }
@@ -85,26 +73,22 @@ header
 
 /* Tinymce */
 
-.textareaContent
-{
+.textareaContent{
   height: 500px;
   width: 100%;
 }
 
-.textareaTitle
-{
+.textareaTitle{
   height: 200px;
   width: 60%;
   margin: 20px 30px 40px 30px;
 }
 
-h1, h2, h3, .comments
-{
+h1, h2, h3, .comments{
 text-align:center;
 }
 
-h3
-{
+h3{
   background-color:#8a8a8a;
   padding: 3%;
   color:white;
@@ -113,33 +97,29 @@ h3
   border-radius: 10px 10px 0 0;
 }
 
-.creationDateFr {
+.creationDateFr{
   background-color:#CCCCCC;
   border-radius: 0 0 10px 10px;
 }
 
-.content
-{
+.content{
   background-color:#CCCCCC;
   border-radius: 10px;
   padding: 1%;
-
+  word-wrap: break-word;
 }
 
-.news
-{
+.news{
   width:70%;
   margin:auto;
 }
 
-a
-{
+a{
   text-decoration: none;
   color: blue;
 }
 
-.no_underline, .no_underline:hover
-{
+.no_underline, .no_underline:hover{
   text-decoration: none;
   color:#000;
 }
@@ -157,25 +137,21 @@ ul, #lienMenu{
   text-align: center;
 }
 
-label
-{
+label{
 	display: block;
 	width: 150px;
 	float: left;
 }
 
-input
-{
+input{
   border-radius: 5px;
 }
 
-.formInscription
-{
+.formInscription{
   padding-bottom: 4px;
 }
 
-hr
-{
+hr{
   align: center;
   size: 2;
   width: 50%;

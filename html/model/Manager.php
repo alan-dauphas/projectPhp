@@ -2,10 +2,17 @@
 
 class Manager
 {
+
   protected function dbConnect()
   {
-        $db = new PDO('mysql:host=localhost;dbname=projectphp;charset=utf8', 'root', '');
+        $credentials = $this->getCredential();
 
-        return $db;
+        return new PDO($credentials['dsn'], $credentials['user'], $credentials['pwd']);
   }
+
+  private function getCredential()
+  {
+    return require "../config/config.php";
+  }
+
 }

@@ -36,10 +36,7 @@ class PostManager extends Manager
 
       $post = new Post();
 
-      // $post->setId($row['id']);
-      // $post->setTitle($row['title']);
-      // $post->setContent($row['content']);
-      // $post->setCreationDateFr($row['creation_date_fr']);
+
       $post->create($row['id'], $row['title'], $row['content'], $row['creation_date_fr']);
 
 

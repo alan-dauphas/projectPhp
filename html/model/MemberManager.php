@@ -25,18 +25,10 @@ class MemberManager extends Manager
 
     if(!$PasswordCorrect){
       throw new Exception("Erreur : Utilisateur ou mot de passe non reconnu");
-
     }
-    else {
       session_start();
       $_SESSION['id'] = $resultat['id'];
       $_SESSION['pseudo'] = $pseudonyme;
       $_SESSION['admin'] = $resultat['admin'];
-
-
-    }
-
-
-      return $resultat;
   }
 }
