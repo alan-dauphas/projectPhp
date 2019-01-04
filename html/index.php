@@ -43,16 +43,16 @@ try {
 	elseif ($_GET['action'] === "deconnection"){
 	 	return disconnectMember();
 	}
-	elseif ($_GET['action'] === "administration" && ($_SESSION['admin'] || $_SESSION['admin'] == 0)){
+	elseif ($_GET['action'] === "administration"){
 	 	return	administrationPostsAndComments();
 	}
-	elseif ($_GET['action'] === "allPosts" && ($_SESSION['admin'] || $_SESSION['admin'] == 0)){
+	elseif ($_GET['action'] === "allPosts" && ($_SESSION['admin'] === '1' || $_SESSION['admin'] === '0')){
 		return administrationReadAllPosts();
 	}
-	elseif ($_GET['action'] === "lastThreePosts" && ($_SESSION['admin'] || $_SESSION['admin'] == 0)){
+	elseif ($_GET['action'] === "lastThreePosts" && ($_SESSION['admin'] === '1' || $_SESSION['admin'] === '0')){
 	 return	administrationReadLastThreePosts();
 	}
-	elseif ($_GET['action'] === "addPost" && ($_SESSION['admin'] || $_SESSION['admin'] == 0)){
+	elseif ($_GET['action'] === "addPost" && ($_SESSION['admin'] === '1' || $_SESSION['admin'] === '0')){
 		if ($_GET['action'] == 'addPost' && isset($_GET['newPost']) && $_GET['newPost'] == 'confirm'){
 			if (isset($_POST['title']) && !empty($_POST['title']) && isset($_POST['content']) && !empty($_POST['content']) ){
 				extract($_POST);
@@ -64,14 +64,14 @@ try {
 			return newPostView();
 		}
 	}
-	elseif ($_GET['action'] === "deletePost" && ($_SESSION['admin'])){
+	elseif ($_GET['action'] === "deletePost" && ($_SESSION['admin'] === '1')){
 		if (isset($_GET['id']) && !empty($_GET['id'])){
 			extract($_GET);
 			return delPost($id);
 		}
 		throw new Exception("Erreur : impossible de supprimer ce post !");
 	}
-	elseif ($_GET['action'] === "updatePost" && isset($_SESSION['admin']) && ($_SESSION['admin'] || $_SESSION['admin'] == 0)){
+	elseif ($_GET['action'] === "updatePost" && isset($_SESSION['admin']) && ($_SESSION['admin'] === '1' || $_SESSION['admin'] === '0')){
 		if (isset($_GET['postId']) && !empty($_GET['postId']) && !isset($_GET['modification'])){
 			extract($_GET);
 			return post($postId);

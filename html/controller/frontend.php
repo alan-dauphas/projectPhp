@@ -81,13 +81,13 @@ function registrationView(){
 
 // Administration
 function administrationPostsAndComments(){
-  $postManager = new PostManager();
-  $posts = $postManager->lastPostsAdministration();
-
-  $commentManager = new CommentManager();
-  $comments = $commentManager->readAllComments();
-
+  if ($_SESSION['admin'] === '1' || $_SESSION['admin'] === '0'){
   require('view/frontend/administrationView.php');
+  }
+  else {
+    header("Location: index.php");
+    exit();
+  }
 }
 
 function administrationReadAllPosts(){
